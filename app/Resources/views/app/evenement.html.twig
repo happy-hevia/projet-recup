@@ -1,0 +1,15 @@
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	{{ route }}<br />
+	{% for e in evenements %}
+		{{ e.content }}
+		{{ e.author}}
+		{{ e.hour|date('h:m:s')}}
+		{{ e.title }}
+		<p>test</p>
+	{% endfor %}
+	<p>kzel</p>
+	
+{% endblock body %}

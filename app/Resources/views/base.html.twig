@@ -1,13 +1,22 @@
+{# app/Resources/views/base.html.twig #}
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<head>
+<meta charset="UTF-8">
+<title>{% block title %}Test Application{% endblock %}</title>
+</head>
+<body>
+	<div id="sidebar">
+		{% block sidebar %}
+		<ul>
+			<li><a href="{{ path('app_app_accueil') }}">Accueil</a></li>
+			<li><a href="{{ path('app_app_evenement') }}">evenement</a></li>
+			<li><a href="{{ path('app_app_description',{'id' : 5}) }}">evement 5</a>
+			</li>
+		</ul>
+		{% endblock %}
+	</div>
+
+	<div id="content">{% block body %}{% endblock %}</div>
+</body>
 </html>
