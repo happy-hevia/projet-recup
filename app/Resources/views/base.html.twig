@@ -4,19 +4,28 @@
 <head>
 <meta charset="UTF-8">
 <title>{% block title %}Test Application{% endblock %}</title>
+<link rel='stylesheet' href='vendor/fullcalendar.css' />
 </head>
 <body>
 	<div id="sidebar">
 		{% block sidebar %}
 		<ul>
-			<li><a href="{{ path('app_app_accueil') }}">Accueil</a></li>
-			<li><a href="{{ path('app_app_evenement') }}">evenement</a></li>
+			<li><a href="{{ path('app_app_accueil') }}">Accueil</a> OK</li>
+			<li><a href="{{ path('app_app_evenement') }}">evenement</a> OK</li>
 			<li><a href="{{ path('app_app_description',{'id' : 5}) }}">evement 5</a>
-			</li>
+				OK
+			
+			<li><a href="{{ path('app_app_creation') }}">creation</a>  OK</li>
+			
+			<li><a href="{{ path('app_app_modification',{'id' : 5}) }}">modification 5</a>  OK</li>
 		</ul>
 		{% endblock %}
 	</div>
 
 	<div id="content">{% block body %}{% endblock %}</div>
+	{% block js %}
+
+	
+	{% endblock %}
 </body>
 </html>

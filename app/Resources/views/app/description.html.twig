@@ -3,5 +3,23 @@
 
 {% block body %}
 	{{ route }}<br />
-	{{ evenement.title }}
+	
+	<div class="evenement" style="border:2px solid black; margin-top: 5px;">
+			{{ evenement.title }}
+			{% if evenement.author is not empty %}
+				{{ evenement.author}}
+			{% endif %}
+			{% if evenement.hour is not empty %}
+				{{ evenement.hour|date("H:i:s")}}
+			{% endif %}
+			{% if evenement.day is not empty %}
+				{{ evenement.day|date('d/m/Y') }}
+			{% endif %}
+			{% if evenement.picture is not empty %}
+				<img src="{{ asset('/upload/'~evenement.picture) }}" alt="image" />
+			{% endif %}
+			{{ evenement.content | raw}}
+			{{ evenement.created|date('d/m/Y H:i:s') }}
+		</div>
+	
 {% endblock body %}

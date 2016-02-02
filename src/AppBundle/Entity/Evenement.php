@@ -3,15 +3,23 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Evenement
  *
  * @ORM\Table(name="evenement")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\EvenementRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Evenement
 {
+	/**
+	 * @Assert\File(maxSize="3000000", maxSizeMessage="Le fichier dois être inférieur à 1mo")
+	 */
+	private $file;
+	
     /**
      * @var int
      *
@@ -25,6 +33,8 @@ class Evenement
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255, nullable=false)
+     * @Assert\NotBlank()
+     * @Assert\Length(min=7, max=255, minMessage="Le titre doit comporter au moins 7 caractères")
      */
     private $title;
 
@@ -39,6 +49,7 @@ class Evenement
      * @var string
      *
      * @ORM\Column(name="content", type="text")
+     * @Assert\NotBlank(message="Vous devez donner une description de l'événement")
      */
     private $content;
 
@@ -248,5 +259,88 @@ class Evenement
     public function getDay()
     {
         return $this->day;
+    }
+    
+    /**
+     * @ORM\PrePersist
+     */
+    public function setCreatedWithCurrentDate(){
+    	$this->created = new \DateTime();
+    }
+    
+    /**
+     * Sets file.
+     *
+     * @param UploadedFile $file
+     */
+    public function setFile(UploadedFile $file = null)
+    {
+    	$this->file = $file;
+    }
+    
+    /**
+     * Get file.
+     *
+     * @return UploadedFile
+     */
+    public function getFile()
+    {
+    	return $this->file;
+    }
+    
+    
+    
+//     uppload d'image
+    public function getAbsolutePath()
+    {
+    	return null === $this->picture
+    	? null
+    	: $this->getUploadRootDir().'/'.$this->picture;
+    }
+    
+    public function getWebPath()
+    {
+    	return null === $this->picture
+    	? null
+    	: $this->getUploadDir().'/'.$this->picture;
+    }
+    
+    protected function getUploadRootDir()
+    {
+    	// the absolute directory path where uploaded
+    	// documents should be saved
+    	return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+    
+    protected function getUploadDir()
+    {
+    	// get rid of the __DIR__ so it doesn't screw up
+    	// when displaying uploaded doc/image in the view.
+    	return 'upload';
+    }
+    
+    public function upload()
+    {
+    	dump('test');
+    	// the file property can be empty if the field is not required
+    if (null === $this->getFile()) {
+        return;
+    }
+
+    // use the original file name here but you should
+    // sanitize it at least to avoid any security issues
+
+    // move takes the target directory and then the
+    // target filename to move to
+    $this->getFile()->move(
+        $this->getUploadRootDir(),
+        $this->getFile()->getClientOriginalName()
+    );
+
+    // set the path property to the filename where you've saved the file
+    $this->picture = $this->getFile()->getClientOriginalName();
+
+    // clean up the file property as you won't need it anymore
+    $this->file = null;
     }
 }

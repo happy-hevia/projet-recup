@@ -3,13 +3,55 @@
 
 {% block body %}
 	{{ route }}<br />
+	
+		<div id='calendar'></div>
 	{% for e in evenements %}
-		{{ e.content }}
-		{{ e.author}}
-		{{ e.hour|date('h:m:s')}}
-		{{ e.title }}
-		<p>test</p>
+		<div class="evenement" style="border:2px solid black; margin-top: 5px;">
+			{{ e.title }}
+			{{ e.author}}
+			{{ e.hour|date('h:m:s')}}
+			{{ e.day|date('d/m/Y') }}
+			{{ e.picture }}
+			{{ e.content | raw}}
+			{{ e.created|date('d/m/Y h:m:s') }}
+			<a href="{{ path('app_app_description', {'id' : e.id}) }}"> lien</a>
+		</div>
+			{{ dump(e.hour|date('d-m-Y')) }}
 	{% endfor %}
-	<p>kzel</p>
 	
 {% endblock body %}
+
+{% block js %}
+	<script src="{{ asset("vendor/jquery.min.js") }}"></script>
+	<script src="{{ asset("vendor/moment.min.js") }}"></script>
+	<script src="{{ asset("vendor/fullcalendar.js") }}"></script>
+	<script>
+	$(document).ready(function() {
+
+	    // page is now ready, initialize the calendar...
+
+	    $('#calendar').fullCalendar({
+	        // put your options and callbacks here
+	        
+	    	events: [
+	        {% for e in evenements %}
+	    	         {
+	    	        	 allDay: false,
+	    	             start: "{{ e.day|date('Y-m-d') }}T{{ e.hour|date('H:i:s') }}",
+	    	             title: 'je zaejklf zehfkjh kzejhkjzefhk jazehf kljhaze jklfhezfzfzfzf',
+	    	             color: 'green',
+	    	             editable:true,
+	    	             url: '{{ path('app_app_description', {'id' : e.id } ) }}',
+	    	             textColor: 'black',
+	    	         }
+	    	         {% if not loop.last %}
+	    	         ,
+	    	         {% endif %}	    	         
+	    	{% endfor %}
+	    	     ]
+	    	
+	    })
+
+	});
+	</script>
+{% endblock %}

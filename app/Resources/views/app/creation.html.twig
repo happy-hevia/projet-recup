@@ -1,0 +1,14 @@
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{{ route }}<br />	
+	
+	{{ form_start(form) }}
+	{{ form_row(form) }}
+	{{ form_end(form) }}
+	
+		<button><a href="{{ path('app_app_evenement') }}">Annuler</a></button>
+	
+	{{ tinymce_init() }}
+{% endblock body %}
