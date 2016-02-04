@@ -9,9 +9,6 @@ use AppBundle\Entity\Evenement;
 use AppBundle\Form\Type\EventType;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
-use Symfony\Component\Form\Extension\Core\Type\ButtonType;
-use Symfony\Component\Form\SubmitButton;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class AppController extends Controller {
@@ -19,85 +16,78 @@ class AppController extends Controller {
 	/**
 	 * @route("/")
 	 */
-	public function accueilAction($_route) {
-		$em = $this->getDoctrine ()->getManager ();
-		$evenements = $em->getRepository ( 'AppBundle:Evenement' )->getAllEvents ();
+	public function accueilAction() {
+		
 		
 		return $this->render ( ':App:accueil.html.twig', array (
-				'route' => $_route,
-				'evenements' => $evenements,
 		) );
 	}
 	
 	/**
 	 * @route("/evenement")
 	 */
-	public function evenementAction($_route) {
+	public function evenementAction() {
 		$em = $this->getDoctrine ()->getManager ();
 		
-		$evenements = $em->getRepository ( 'AppBundle:Evenement' )->getAllEvents ();
+		$evenements = $em->getRepository('AppBundle:Evenement' )->getAllEvents ();
+		$evenementsCreation = $em->getRepository('AppBundle:Evenement' )->getAllEventsByCreated();
 		
 		return $this->render ( ':App:evenement.html.twig', array (
-				'route' => $_route,
-				'evenements' => $evenements 
+				'evenements' => $evenements,
+				'evenementsCreation' => $evenementsCreation,
 		) );
 	}
 	
 	/**
 	 * @route("/evenement/{id}",requirements={ "id" = "^\d+"})
 	 */
-	public function descriptionAction($id, $_route) {
+	public function descriptionAction(Evenement $evenement) {
 		$em = $this->getDoctrine ()->getManager ();
-		
-		$evenement = $em->getRepository ( 'AppBundle:Evenement' )->findOneById ( $id );
-		
-		if (!$evenement) {
-			throw $this->createNotFoundException("l'evenement est introuvable");
-		}
+		$evenements = $em->getRepository('AppBundle:Evenement' )->getAllEvents ();
+		$evenementsCreation = $em->getRepository('AppBundle:Evenement' )->getAllEventsByCreated();
 		
 		return $this->render ( ':App:description.html.twig', array (
-				'route' => $_route,
-				'evenement' => $evenement 
+				'evenement' => $evenement,
+				'evenements' => $evenements,
+				'evenementsCreation' => $evenementsCreation,
 		) );
 	}
 	
 	/**
 	 * @route("/creation")
 	 */
-	public function creationAction($_route, Request $request) {
+	public function creationAction(Request $request) {
 		
 		$em = $this->getDoctrine ()->getManager ();
 		$evenement = new Evenement ();
+		$evenements = $em->getRepository('AppBundle:Evenement' )->getAllEvents ();
+		$evenementsCreation = $em->getRepository('AppBundle:Evenement' )->getAllEventsByCreated();
 		$form = $this->createForm (EventType::class, $evenement);
+		
 		
 		$form->handleRequest($request);
 		if ($form->isSubmitted() && $form->isValid()){
-			
 			$evenement->upload();
-			
 			$em->persist($evenement);
 			$em->flush();
-			
+
 			return $this->redirectToRoute('app_app_description', array('id' => $evenement->getId()));
 		}
 		return $this->render ( ':App:creation.html.twig', array (
-				'route' => $_route,
-				'form' => $form->createView(),
+			'form' => $form->createView(),
+				'evenements' => $evenements,
+				'evenementsCreation' => $evenementsCreation,
+				
 		) );
 	}
 	
 	/**
 	 * @route("/modification/{id}", requirements={ "id" = "^\d+"})
 	 */
-	public function modificationAction($id, $_route, Request $request) {
-		$em = $this->getDoctrine ()->getManager ();
-		$evenement = $em->getRepository ( 'AppBundle:Evenement' )->findOneById ( $id );
-		
-
-		if (!$evenement) {
-			throw $this->createNotFoundException("l'evenement est introuvable");
-		}
-		
+	public function modificationAction(Evenement $evenement, Request $request) {
+		$em = $this->getDoctrine()->getManager();
+		$evenements = $em->getRepository('AppBundle:Evenement' )->getAllEvents ();
+		$evenementsCreation = $em->getRepository('AppBundle:Evenement' )->getAllEventsByCreated();
 		$form = $this->createForm (EventType::class, $evenement)
 					->add('remove', SubmitType::class, array('attr' => array('label' => 'supprimer')));
 		
@@ -113,6 +103,7 @@ class AppController extends Controller {
 			}
 			
 			//modification
+			$evenement->upload();
 			$em->persist($evenement);
 			$em->flush();
 			
@@ -120,9 +111,10 @@ class AppController extends Controller {
 		}
 		
 		return $this->render ( ':App:modification.html.twig', array (
-				'route' => $_route,
 				'evenement' => $evenement,
-				'form' => $form->createView () 
+				'form' => $form->createView (),
+				'evenements' => $evenements,
+				'evenementsCreation' => $evenementsCreation,
 		) );
 	}
 	
@@ -162,5 +154,20 @@ class AppController extends Controller {
 	 */
 	public function logoutAction(){
 	
+	}
+	
+	/**
+	 * 
+	 */
+	public function EventsAction()
+	{
+		$em = $this->getDoctrine ()->getManager ();
+		$evenements = $em->getRepository('AppBundle:Evenement' )->getAllEvents ();
+		$evenementsCreation = $em->getRepository('AppBundle:Evenement' )->getAllEventsByCreated();
+		
+		return $this->render(':app:arbre.html.twig', array(
+				'evenements' => $evenements,
+				'evenementsCreation' => $evenementsCreation,
+		)) ;
 	}
 }

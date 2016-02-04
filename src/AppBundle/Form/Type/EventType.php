@@ -21,7 +21,7 @@ Class EventType extends AbstractType
 		->add('author', TextType::class)
 		->add('day', null, array('widget' => 'single_text'))
 		->add('hour', null, array('widget' => 'single_text'))
-		->add('file',null , array('required' => true))
+		->add('file',null , array('required' => false))
 		->add('content', null, array( 'attr' => array('class' => 'tinymce')))
 		->add('submit', SubmitType::class, array('attr' => array('value' => 'valider')));
 	}

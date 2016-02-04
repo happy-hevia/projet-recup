@@ -4,27 +4,57 @@
 <head>
 <meta charset="UTF-8">
 <title>{% block title %}Test Application{% endblock %}</title>
-<link rel='stylesheet' href='vendor/fullcalendar.css' />
-</head>
+<link rel='stylesheet' href='{{ asset('vendor/fullCalendar.css') }}' />
+{% block css %}
+	<style>
+		.sidebar{
+			background-color: #dff;
+			width: 30%;
+			float:right;
+			height: 1000px;
+		}
+		.content{
+			background-color: #fdf;
+			width: 60%;
+		}
+		.navbar{
+			background-color: #ffd;
+		}
+	</style>	
+{% endblock %}
+
+
 <body>
-	<div id="sidebar">
-		{% block sidebar %}
-		<ul>
+	<nav class="navbar">
+		{% block navbar %}
+			<ul>
 			<li><a href="{{ path('app_app_accueil') }}">Accueil</a> OK</li>
 			<li><a href="{{ path('app_app_evenement') }}">evenement</a> OK</li>
 			<li><a href="{{ path('app_app_description',{'id' : 5}) }}">evement 5</a>
-				OK
 			
 			<li><a href="{{ path('app_app_creation') }}">creation</a>  OK</li>
 			
 			<li><a href="{{ path('app_app_modification',{'id' : 5}) }}">modification 5</a>  OK</li>
-		</ul>
+			</ul>
+		{% endblock navbar %}
+	</nav>
+
+	<div class="sidebar">
+		{% block sidebar %}
+		{% endblock %}
+		{{ render(controller('AppBundle:App:Events')) }}
+		
+	</div>
+	<div class="content">
+		{% block body %}
+			<p>hello</p>
 		{% endblock %}
 	</div>
-
-	<div id="content">{% block body %}{% endblock %}</div>
-	{% block js %}
-
+	
+	{% block javascript %}
+	<script src="{{ asset("vendor/jquery.min.js") }}"></script>
+	<script src="{{ asset("vendor/moment.min.js") }}"></script>
+	<script src="{{ asset("vendor/fullcalendar.js") }}"></script>
 	
 	{% endblock %}
 </body>

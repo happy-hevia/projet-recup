@@ -2,44 +2,4 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-	{{ route }}<br />	
-	<div class="test" style="width: 250px; height: 250px;";>
-		<div id="calendar"></div>
-	</div>
-{% endblock body %}
-
-{% block js %}
-	<script src="{{ asset("vendor/jquery.min.js") }}"></script>
-	<script src="{{ asset("vendor/moment.min.js") }}"></script>
-	<script src="{{ asset("vendor/fullcalendar.js") }}"></script>
-	<script>
-	$(document).ready(function() {
-
-	    // page is now ready, initialize the calendar...
-
-	    $('#calendar').fullCalendar({
-	        // put your options and callbacks here
-	        aspectRatio: 1,
-	        contentHeight: 'auto',
-	    	events: [
-	        {% for e in evenements %}
-	    	         {
-	    	        	 allDay: true,
-	    	             start: "{{ e.day|date('Y-m-d') }}T{{ e.hour|date('H:i:s') }}",
-	    	             title: 'je zaejklf zehfkjh kzejhkjzefhk jazehf kljhaze jklfhezfzfzfzf',
-	    	             color: 'green',
-	    	             editable:true,
-	    	             url: '{{ path('app_app_description', {'id' : e.id } ) }}',
-	    	             textColor: 'black',
-	    	         }
-	    	         {% if not loop.last %}
-	    	         ,
-	    	         {% endif %}	    	         
-	    	{% endfor %}
-	    	     ]
-	    	
-	    })
-
-	});
-	</script>
 {% endblock %}

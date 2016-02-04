@@ -14,7 +14,12 @@ class EvenementRepository extends \Doctrine\ORM\EntityRepository
 		return $this->getEntityManager()
 					->createQuery('
 						SELECT e FROM AppBundle:Evenement e ORDER BY e.day DESC ')
-					->setMaxResults(12)
+					->getResult();
+	}
+	public function getAllEventsByCreated(){
+		return $this->getEntityManager()
+					->createQuery('
+						SELECT e FROM AppBundle:Evenement e ORDER BY e.created DESC ')
 					->getResult();
 	}
 	

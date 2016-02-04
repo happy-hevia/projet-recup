@@ -1,0 +1,54 @@
+<div id="calendar"></div>
+{# Arbre de recherche par date#}
+{% set annee = "kjh" %}
+{% set mois = "kjh" %}
+{% for e in evenementsCreation %}
+	<ul>{% if annee != e.created|date('Y') %}
+
+	<li>{{ e.created|date('Y') }} {% endif %}
+		<ul>
+			{% if mois != e.created|date('Y-m') %}
+			<li>{{ moisfr[e.created|date('n')-1] }} {% endif %}
+				<ul>
+					<li>{{ e.title }}</li>
+				</ul> {% if mois != e.created|date('Y-m') %}
+			</li> {% endif %}
+		</ul> {% set mois = e.created|date('Y-m') %} {% if annee !=
+		e.created|date('Y') %}
+	</li> {% endif %}</ul> {% set annee = e.created|date('Y') %}
+
+
+{% endfor %}
+
+<script src="{{ asset("vendor/jquery.min.js") }}"></script>
+<script>
+	$(document).ready(function() {
+
+	    // page is now ready, initialize the calendar...
+
+	    $('#calendar').fullCalendar({
+	        // put your options and callbacks here
+	        aspectRatio: 1,
+	        contentHeight: 'auto',
+	        eventLimit : 3,
+	    	events: [
+	        {% for e in evenements %}
+	    	         {
+	    	        	 allDay: true,
+	    	             start: "{{ e.day|date('Y-m-d') }}T{{ e.hour|date('H:i:s') }}",
+	    	             title: 'yo',
+	    	             color: 'purple',
+	    	             editable:true,
+	    	             url: '{{ path('app_app_description', {'id' : e.id } ) }}',
+	    	             textColor: 'white',
+	    	         }
+	    	         {% if not loop.last %}
+	    	         ,
+	    	         {% endif %}	    	         
+	    	{% endfor %}
+	    	     ]
+	    	
+	    })
+
+	});
+	</script>

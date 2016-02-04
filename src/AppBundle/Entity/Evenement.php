@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class Evenement
 {
 	/**
-	 * @Assert\File(maxSize="3000000", maxSizeMessage="Le fichier dois être inférieur à 1mo")
+	 * @Assert\File(maxSize="3000000", maxSizeMessage="Le fichier dois être inférieur à 3mo")
 	 */
 	private $file;
 	
@@ -309,7 +309,7 @@ class Evenement
     {
     	// the absolute directory path where uploaded
     	// documents should be saved
-    	return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    	return __DIR__.'/../../../web/'.$this->getUploadDir();
     }
     
     protected function getUploadDir()
@@ -321,7 +321,6 @@ class Evenement
     
     public function upload()
     {
-    	dump('test');
     	// the file property can be empty if the field is not required
     if (null === $this->getFile()) {
         return;
