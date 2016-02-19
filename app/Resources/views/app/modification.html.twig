@@ -1,7 +1,13 @@
 
 {% extends 'base.html.twig' %}
 
-{% block body %}
+{% block navbarLien %}
+	<li><a class="navbar-lien" href="{{ path('app_app_accueil') }}">Accueil</a></li>
+	<li class="active"><a class="navbar-lien" href="{{ path('app_app_evenement') }}">evenement</a></li>
+	<li><a class="navbar-lien" href="{{ path('app_app_creation') }}">creation</a></li>
+{% endblock %}
+
+{% block article %}
 <br />	
 	{{ evenement.title }}
 	
@@ -12,4 +18,4 @@
 	<button><a href="{{ path('app_app_evenement') }}">Annuler</a></button>
 	
 	{{ tinymce_init() }}
-{% endblock body %}
+{% endblock %}

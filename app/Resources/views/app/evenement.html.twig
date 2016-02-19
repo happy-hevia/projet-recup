@@ -1,9 +1,17 @@
- {% extends 'base.html.twig' %} {% block body %}
+ {% extends 'base.html.twig' %}
+
+ {% block navbarLien %}
+	 <li><a class="navbar-lien" href="{{ path('app_app_accueil') }}">Accueil</a></li>
+	 <li class="active"><a class="navbar-lien" href="{{ path('app_app_evenement') }}">evenement</a></li>
+	 <li><a class="navbar-lien" href="{{ path('app_app_creation') }}">creation</a></li>
+ {% endblock %}
+
+ {% block article %}
+	 <div id='calendar'></div>
 
 
-<div id='calendar'></div>
-{% for e in evenements %}
-<div class="evenement" style="border: 2px solid black; margin-top: 5px;">
+	 {% for e in evenements %}
+	<div class="evenement" style="border: 2px solid black; margin-top: 5px;">
 	{{ e.title }} 
 	{{ e.author}} 
 	{{ e.hour|date('h:m')}} 
@@ -14,4 +22,4 @@
 	<a href="{{ path('app_app_description', {'id' : e.id}) }}"> lien</a>
 </div>
 {% endfor %} 
-{% endblock body %}
+{% endblock %}

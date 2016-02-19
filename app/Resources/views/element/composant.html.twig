@@ -1,0 +1,41 @@
+
+
+{#// 2 tri : un par date d'événement et par date de création#}
+
+{# cet element va s'afficher seulement si il n'y a pas d'autre élément calendar
+    cad partout sauf dans le page événement #}
+    <div id="calendar"></div>
+
+
+<script src="{{ asset("vendor/jquery.min.js") }}"></script>
+<script>
+    $(document).ready(function () {
+
+        // page is now ready, initialize the calendar...
+
+        $('#calendar').fullCalendar({
+            // put your options and callbacks here
+            aspectRatio: 1,
+            contentHeight: 'auto',
+            eventLimit: 3,
+            events: [
+                {% for e in evenements %}
+                {
+                    allDay: true,
+                    start: "{{ e.day|date('Y-m-d') }}T{{ e.hour|date('H:i:s') }}",
+                    title: '{{ e.title }}',
+                    color: '547129',
+                    editable: true,
+                    url: '{{ path('app_app_description', {'id' : e.id } ) }}',
+                    textColor: 'white',
+                }
+                {% if not loop.last %}
+                ,
+                {% endif %}
+                {% endfor %}
+            ]
+
+        })
+
+    });
+</script>

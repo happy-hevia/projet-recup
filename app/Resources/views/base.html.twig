@@ -1,61 +1,160 @@
 {# app/Resources/views/base.html.twig #}
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-<meta charset="UTF-8">
-<title>{% block title %}Test Application{% endblock %}</title>
-<link rel='stylesheet' href='{{ asset('vendor/fullCalendar.css') }}' />
-{% block css %}
-	<style>
-		.sidebar{
-			background-color: #dff;
-			width: 30%;
-			float:right;
-			height: 1000px;
-		}
-		.content{
-			background-color: #fdf;
-			width: 60%;
-		}
-		.navbar{
-			background-color: #ffd;
-		}
-	</style>	
-{% endblock %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title> Poubelle en N(or)d - {% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href=" {{ asset('css/themeBootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel='stylesheet' href='{{ asset('vendor/fullcalendar.css') }}'/>
+    {% block css %}
+        <style>
+        </style>
+    {% endblock %}
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
 
 <body>
-	<nav class="navbar">
-		{% block navbar %}
-			<ul>
-			<li><a href="{{ path('app_app_accueil') }}">Accueil</a> OK</li>
-			<li><a href="{{ path('app_app_evenement') }}">evenement</a> OK</li>
-			<li><a href="{{ path('app_app_description',{'id' : 5}) }}">evement 5</a>
-			
-			<li><a href="{{ path('app_app_creation') }}">creation</a>  OK</li>
-			
-			<li><a href="{{ path('app_app_modification',{'id' : 5}) }}">modification 5</a>  OK</li>
-			</ul>
-		{% endblock navbar %}
-	</nav>
 
-	<div class="sidebar">
-		{% block sidebar %}
-		{% endblock %}
-		{{ render(controller('AppBundle:App:Events')) }}
-		
-	</div>
-	<div class="content">
-		{% block body %}
-			<p>hello</p>
-		{% endblock %}
-	</div>
-	
-	{% block javascript %}
-	<script src="{{ asset("vendor/jquery.min.js") }}"></script>
-	<script src="{{ asset("vendor/moment.min.js") }}"></script>
-	<script src="{{ asset("vendor/fullcalendar.js") }}"></script>
-	
-	{% endblock %}
+<nav class="navbar navbar-default">
+    {% block navbar %}
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <p class="navbar-text titre"><a href="{{ path('app_app_accueil') }}">Poubelle en N
+                    <span class="or">or</span>
+                    d
+                </a>
+            </p>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav pull-right">
+                {% block navbarLien %}
+                    <li><a class="navbar-lien" href="{{ path('app_app_accueil') }}">Accueil</a></li>
+                    <li><a class="navbar-lien" href="{{ path('app_app_evenement') }}">evenement</a></li>
+                    <li><a class="navbar-lien" href="{{ path('app_app_creation') }}">creation</a></li>
+                {% endblock %}
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+{% endblock navbar %}
+
+
+<div class="container">
+
+    {% block baniere %}
+
+    {% endblock %}
+
+    {#<ul class="nav navbar-nav pull-right">#}
+        {#<li class="active"><a class="navbar-lien" href="{{ path('app_app_accueil') }}">Accueil</a></li>#}
+        {#<li><a class="navbar-lien" href="{{ path('app_app_evenement') }}">evenement</a></li>#}
+        {#<li><a class="navbar-lien" href="{{ path('app_app_description',{'id' : 5}) }}">evement 5</a>#}
+        {#<li><a class="navbar-lien" href="{{ path('app_app_creation') }}">creation</a></li>#}
+        {#<li><a class="navbar-lien" href="{{ path('app_app_modification',{'id' : 5}) }}">modification 5</a></li>#}
+    {#</ul>#}
+
+
+    <article class="col-xs-12 col-sm-8 col-md-8">
+        {% block article %}
+
+        {% endblock %}
+    </article>
+
+    <aside class="col-xs-12 col-sm-4 col-md-4">
+        {% block sidebar %}
+            <div class="contact">
+                <h3 class="contact-titre" >Nous contactez</h3>
+                <p class="tel" ><span>tel : 01.23.54.65.25</span></p>
+                <p class="email" >
+                    <p class="contact-email" >Par email:</p>
+                    <ul>
+                        <li class="contact-email-element">info.test@sfr.fr</li>
+                        <li class="contact-email-element">recup.alimentaire@google.fr</li>
+                    </ul>
+                </p>
+            </div>
+
+                {{ render(controller('AppBundle:App:Events')) }}
+
+            <hr>
+
+            <div class="amis">
+                <p class="aside-title">Associations amis</p>
+                <ul>
+                    <li><a href="#">Lille de solidarité:</a> Cliquez ici pour ajouter votre propre texte​</li>
+                    <li><a href="#">Le resto du coeur :</a> Une petite association bien sympa pour manger chaux les vendredi​</li>
+                    <li><a href="#">A nos poubelles:</a> Rien de mieux pour apprendre à glaner​</li>
+                    <li><a href="#">Même pas fain :</a> vous voulez aidez les plus démunis : lancez-vous.​</li>
+                </ul>
+            </div>
+
+            <hr>
+
+            <div class="utile">
+                <p class="aside-title">Liens utiles</p>
+                <ul>
+                    <li><a href="#">Lille de solidarité:</a> Cliquez ici pour ajouter votre propre texte​</li>
+                    <li><a href="#">Le resto du coeur :</a> Une petite association bien sympa pour manger chaux les vendredi​</li>
+                    <li><a href="#">A nos poubelles:</a> Rien de mieux pour apprendre à glaner​</li>
+                    <li><a href="#">Même pas fain :</a> vous voulez aidez les plus démunis : lancez-vous.​</li>
+                </ul>
+            </div>
+
+            <hr>
+
+            <div class="facebook">
+                <p class="aside-title">Page facebook</p>
+
+                <div class="fb-page" data-href="https://www.facebook.com/R%C3%A9cup-Alimentaire-March%C3%A9s-Poubelles-Lille-223676804439629/?fref=ts" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false"></div>
+
+            </div>
+        {% endblock %}
+
+    </aside>
+
+</div>
+
+<footer>
+    <p>Contenu du footer ici</p>
+</footer>
+
+
+{% block javascript %}
+    <script src="{{ asset("vendor/jquery.min.js") }}"></script>
+    <script src="{{ asset("vendor/moment.min.js") }}"></script>
+    <script src="{{ asset("vendor/fullcalendar.js") }}"></script>
+    <script src="{{ asset("js/bootstrap.js") }}"></script>
+
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.5";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+
+{% endblock %}
 </body>
 </html>

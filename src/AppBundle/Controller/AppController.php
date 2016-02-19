@@ -84,7 +84,7 @@ class AppController extends Controller {
 	/**
 	 * @route("/modification/{id}", requirements={ "id" = "^\d+"})
 	 */
-	public function modificationAction(Evenement $evenement, Request $request) {
+	public function modificationAction(Evenement $evenement, Request $request, $id) {
 		$em = $this->getDoctrine()->getManager();
 		$evenements = $em->getRepository('AppBundle:Evenement' )->getAllEvents ();
 		$evenementsCreation = $em->getRepository('AppBundle:Evenement' )->getAllEventsByCreated();
@@ -165,7 +165,7 @@ class AppController extends Controller {
 		$evenements = $em->getRepository('AppBundle:Evenement' )->getAllEvents ();
 		$evenementsCreation = $em->getRepository('AppBundle:Evenement' )->getAllEventsByCreated();
 		
-		return $this->render(':app:arbre.html.twig', array(
+		return $this->render(':element:composant.html.twig', array(
 				'evenements' => $evenements,
 				'evenementsCreation' => $evenementsCreation,
 		)) ;

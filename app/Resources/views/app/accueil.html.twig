@@ -1,5 +1,77 @@
-
 {% extends 'base.html.twig' %}
 
-{% block body %}
+ {% block navbarLien %}
+     <li class="active"><a class="navbar-lien" href="{{ path('app_app_accueil') }}">Accueil</a></li>
+     <li><a class="navbar-lien" href="{{ path('app_app_evenement') }}">evenement</a></li>
+     <li><a class="navbar-lien" href="{{ path('app_app_creation') }}">creation</a></li>
+ {% endblock %}
+
+{% block baniere %}
+    <p><img class="col-span-12 baniere" src="{{ asset('css/home.png') }}" alt="baniere"></p>
+{% endblock %}
+{% block article %}
+    <div class="accueil">
+        <h1 class="titrePrincipale">Poubelle en N(or)d</h1>
+        <p>Je suis un <strong>paragraphe</strong>. Cliquez ici pour ajouter votre propre texte et me modifier. C'est facile.Je suis un
+            paragraphe. Cliquez ici pour ajouter <strong>paragraphe</strong> votre propre texte et me modifier.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque eveniet fugit iure laboriosam maxime mollitia
+            nemo perspiciatis voluptas. Aspernatur cumque excepturi iusto officiis similique voluptate.</p>
+        <hr>
+        <h2>Notre Equipe</h2>
+        <p>Paragraphe. Cliquez ici pour  <strong>paragraphe</strong> ajouter votre propre texte. Cliquez sur "Modifier Texte" ou double-cliquez ici
+            pour ajouter votre contenu et personnaliser les polices.
+
+            ​Présentez ici votre entreprise, vos services et vos équipes. Utilisez cet espace pour décrire votre
+            activité, vos motivations et vos objectifs.</p>
+        <hr>
+        <h2>Nos principes</h2>
+        <p>Paragraphe. Cliquez ici pour ajouter votre propre texte. Cliquez sur "Modifier Texte" ou double-cliquez ici
+            pour ajouter votre contenu et  <strong>paragraphe</strong> personnaliser les polices.
+
+            ​Présentez ici votre entreprise, vos services et vos équipes. Utilisez cet espace pour décrire votre
+            activité, vos motivations et vos objectifs</p>
+
+        Principes:
+        <ul>
+            <li>non-violence physique et matérielle (pas de dégradation), mais pratique de la désobéissance civile
+                (prendre la nourriure jetée là où elle se trouve)
+            </li>
+            <li>limitation aux maximum de nos propres déchets lors des activités</li>
+            <li>tout peut-être récupéré, mais seront distribué uniquement les aliments et les plats vegans (sans
+                exploitation animale)
+            </li>
+            <li>le collectif fonctionnera de manière horizontal, l'information sera partagée et les décisions prises au
+                consensus dans la mesure du possible. La parole et les tâches ne seront pas accaparées par quelques
+                membres
+            </li>
+            <li>engagé-e-s contre toutes les formes d'oppressions et de discriminations, contre le racisme, le sexisme,
+                le spécisme....
+            </li>
+            <li>lors de distributions, la gratuité ou le don libre seront encouragés</li>
+            <li>les bénéfices seront utilisés entièrement afin de couvrir des frais éventuels, investir dans du matériel
+                ou supporter d'autres initiatives de solidarité
+            </li>
+            <li>lors de distributions, s'inscrire dans une démarche de solidarité plutôt que de charité et viser
+                l'autonomie du public plutôt que sa dépendance, par exemple en partageant les techniques de récup ou les
+                invitant à participer à l'action
+            </li>
+            <li>indépendance vis à vis de tout mouvement religieux, sectaire ou parti politique</li>
+        </ul>
+        <hr>
+        <h2>Nos actions</h2>
+        <p>Paragraphe. Cliquez ici pour ajouter votre propre texte. Cliquez sur "Modifier Texte" ou double-cliquez ici
+            pour ajouter votre contenu et personnaliser les polices.
+
+            ​Présentez ici votre entreprise, vos services et vos équipes. Utilisez cet espace pour décrire votre
+            activité, vos motivations et vos objectifs</p>
+        <ul>
+            <li>lutter contre le gaspillage, promouvoir la récup' alimentaire</li>
+            <li>partager à la fois la nourriture collectée et l'expérience accumulée</li>
+            <li>lancer des débats autour l'alimentation, du consumérisme, de l'environnement, des inégalités...</li>
+            <li>faire preuve de solidarité envers des publics variés via la distribution alimentaire directe ou de
+                produits cuisinés
+            </li>
+
+        </ul>
+    </div>
 {% endblock %}
