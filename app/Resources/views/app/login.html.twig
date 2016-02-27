@@ -2,29 +2,44 @@
 
 {# app/Resources/views/security/login.html.twig #}
 {# ... you will probably extends your base template, like base.html.twig #}
-
+{% extends 'base.html.twig' %}
 
 
 {% block article %}
 
-{% if error %}
-    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-{% endif %}
+    <div class="formulaire-connexion">
 
-<form action="{{ path('login_check') }}" method="post">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="_username" value="{{ last_username }}" />
+        <p class="lead">Vous devez vous connectez pour accéder au page de création et de modification des événements</p>
 
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="_password" />
+        <form action="{{ path('login_check') }}" method="post" class="form-horizontal">
+            <div class="form-group">
+                <label for="username" class="col-xs-4 control-label">Identifiant :</label>
+                <div class="col-xs-8">
+                    <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}"/>
+                </div>
+            </div>
 
-    {#
-        If you want to control the URL the user
-        is redirected to on success (more details below)
-        <input type="hidden" name="_target_path" value="/account" />
-    #}
+            <div class="form-group">
+                <label for="password" class="col-xs-4 control-label">Mot de passe :</label>
+                <div class="col-xs-8"><input class="form-control" type="password" id="password" name="_password"/></div>
+            </div>
 
-    <button type="submit">login</button>
-</form>
+            {#
+                If you want to control the URL the user
+                is redirected to on success (more details below)
+                <input type="hidden" name="_target_path" value="/account" />
+            #}
+
+            {% if error %}
+                <p class="form-erreur">L'identifiant ou le mot de passe est incorrect</p>
+            {% endif %}
+            <div class="pull-right">
+                <button class="btn btn-default"><a href="{{ path('app_app_evenement') }}">Annuler</a></button>
+                <button type="submit" class="btn btn-success">Se connecter</button>
+            </div>
+        </form>
+
+
+    </div>
 
 {% endblock %}

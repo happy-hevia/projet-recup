@@ -1,31 +1,31 @@
-
 {% extends 'base.html.twig' %}
 
 {% block navbarLien %}
-	<li><a class="navbar-lien" href="{{ path('app_app_accueil') }}">Accueil</a></li>
-	<li class="active" ><a class="navbar-lien" href="{{ path('app_app_evenement') }}">evenement</a></li>
-	<li><a class="navbar-lien" href="{{ path('app_app_creation') }}">creation</a></li>
+    <li><a class="navbar-lien" href="{{ path('app_app_accueil') }}">Accueil</a></li>
+    <li class="active"><a class="navbar-lien" href="{{ path('app_app_evenement') }}">evenement</a></li>
+    <li><a class="navbar-lien" href="{{ path('app_app_creation') }}">creation</a></li>
 {% endblock %}
 
 {% block article %}
-	<br />
-	
-	<div class="evenement" style="border:2px solid black; margin-top: 5px;">
-			{{ evenement.title }}
-			{% if evenement.author is not empty %}
-				{{ evenement.author}}
-			{% endif %}
-			{% if evenement.hour is not empty %}
-				{{ evenement.hour|date("H:i:s")}}
-			{% endif %}
-			{% if evenement.day is not empty %}
-				{{ evenement.day|date('d/m/Y') }}
-			{% endif %}
-			{% if evenement.picture is not empty %}
-				<img src="{{ asset('/upload/'~evenement.picture) }}" alt="image" />
-			{% endif %}
-			{{ evenement.content | raw}}
-			{{ evenement.created|date('d/m/Y H:i:s') }}
-		</div>
-	
+    <br/>
+
+    <div class="description">
+        <h1 class="description-titre">{{ evenement.title }}</h1>
+        {% if evenement.picture is not empty %}
+            <p class="description-image" ><img  src="{{ asset('/upload/'~evenement.picture) }}" alt="image"/></p>
+        {% endif %}
+        {% if evenement.day is not empty %}
+            <p class="description-date"><span class="labelDate">Date de l'événement</span> : {{ evenement.day|date('d/m/Y') }}
+        {% endif %}
+        {% if evenement.hour is not empty %}
+           à {{ evenement.hour|date("H:i") }}</p>
+        {% endif %}
+        <div class="description-contenu">{{ evenement.content|raw }}</div>
+        <p class="description-creation">Publié le {{ evenement.created|date('d/m/Y H:i') }}
+            {% if evenement.author is not empty %}
+                par {{ evenement.author }}
+            {% endif %}
+        </p>
+    </div>
+
 {% endblock %}

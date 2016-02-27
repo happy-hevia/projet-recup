@@ -31,7 +31,12 @@ class AppController extends Controller {
 		
 		$evenements = $em->getRepository('AppBundle:Evenement' )->getAllEvents ();
 		$evenementsCreation = $em->getRepository('AppBundle:Evenement' )->getAllEventsByCreated();
-		
+
+		//		supprime les balises et transforme les caractères spéciaux en caractères html
+		foreach( $evenements as $id => $e ){
+			$e->setContent(strip_tags(html_entity_decode($e->getContent())));
+		}
+
 		return $this->render ( ':App:evenement.html.twig', array (
 				'evenements' => $evenements,
 				'evenementsCreation' => $evenementsCreation,
@@ -45,12 +50,14 @@ class AppController extends Controller {
 		$em = $this->getDoctrine ()->getManager ();
 		$evenements = $em->getRepository('AppBundle:Evenement' )->getAllEvents ();
 		$evenementsCreation = $em->getRepository('AppBundle:Evenement' )->getAllEventsByCreated();
-		
-		return $this->render ( ':App:description.html.twig', array (
+
+
+
+			return $this->render ( ':App:description.html.twig', array (
 				'evenement' => $evenement,
 				'evenements' => $evenements,
 				'evenementsCreation' => $evenementsCreation,
-		) );
+			) );
 	}
 	
 	/**
@@ -169,5 +176,16 @@ class AppController extends Controller {
 				'evenements' => $evenements,
 				'evenementsCreation' => $evenementsCreation,
 		)) ;
+	}
+
+	/**
+	 * @route("/cgu")
+	 */
+	public function CguAction()
+	{
+
+
+		return $this->render(':app:cgu.html.twig');
+
 	}
 }

@@ -67,11 +67,11 @@
     {% endblock %}
 
     {#<ul class="nav navbar-nav pull-right">#}
-        {#<li class="active"><a class="navbar-lien" href="{{ path('app_app_accueil') }}">Accueil</a></li>#}
-        {#<li><a class="navbar-lien" href="{{ path('app_app_evenement') }}">evenement</a></li>#}
-        {#<li><a class="navbar-lien" href="{{ path('app_app_description',{'id' : 5}) }}">evement 5</a>#}
-        {#<li><a class="navbar-lien" href="{{ path('app_app_creation') }}">creation</a></li>#}
-        {#<li><a class="navbar-lien" href="{{ path('app_app_modification',{'id' : 5}) }}">modification 5</a></li>#}
+    {#<li class="active"><a class="navbar-lien" href="{{ path('app_app_accueil') }}">Accueil</a></li>#}
+    {#<li><a class="navbar-lien" href="{{ path('app_app_evenement') }}">evenement</a></li>#}
+    {#<li><a class="navbar-lien" href="{{ path('app_app_description',{'id' : 5}) }}">evement 5</a>#}
+    {#<li><a class="navbar-lien" href="{{ path('app_app_creation') }}">creation</a></li>#}
+    {#<li><a class="navbar-lien" href="{{ path('app_app_modification',{'id' : 5}) }}">modification 5</a></li>#}
     {#</ul>#}
 
 
@@ -84,18 +84,18 @@
     <aside class="col-xs-12 col-sm-4 col-md-4">
         {% block sidebar %}
             <div class="contact">
-                <h3 class="contact-titre" >Nous contactez</h3>
-                <p class="tel" ><span>tel : 01.23.54.65.25</span></p>
-                <p class="email" >
-                    <p class="contact-email" >Par email:</p>
-                    <ul>
-                        <li class="contact-email-element">info.test@sfr.fr</li>
-                        <li class="contact-email-element">recup.alimentaire@google.fr</li>
-                    </ul>
+                <h3 class="contact-titre">Nous contactez</h3>
+                <p class="tel"><span>tel : 01.23.54.65.25</span></p>
+                <p class="email">
+                <p class="contact-email">Par email:</p>
+                <ul>
+                    <li class="contact-email-element">info.test@sfr.fr</li>
+                    <li class="contact-email-element">recup.alimentaire@google.fr</li>
+                </ul>
                 </p>
             </div>
 
-                {{ render(controller('AppBundle:App:Events')) }}
+            {{ render(controller('AppBundle:App:Events')) }}
 
             <hr>
 
@@ -103,7 +103,9 @@
                 <p class="aside-title">Associations amis</p>
                 <ul>
                     <li><a href="#">Lille de solidarité:</a> Cliquez ici pour ajouter votre propre texte​</li>
-                    <li><a href="#">Le resto du coeur :</a> Une petite association bien sympa pour manger chaux les vendredi​</li>
+                    <li><a href="#">Le resto du coeur :</a> Une petite association bien sympa pour manger chaux les
+                        vendredi​
+                    </li>
                     <li><a href="#">A nos poubelles:</a> Rien de mieux pour apprendre à glaner​</li>
                     <li><a href="#">Même pas fain :</a> vous voulez aidez les plus démunis : lancez-vous.​</li>
                 </ul>
@@ -115,7 +117,9 @@
                 <p class="aside-title">Liens utiles</p>
                 <ul>
                     <li><a href="#">Lille de solidarité:</a> Cliquez ici pour ajouter votre propre texte​</li>
-                    <li><a href="#">Le resto du coeur :</a> Une petite association bien sympa pour manger chaux les vendredi​</li>
+                    <li><a href="#">Le resto du coeur :</a> Une petite association bien sympa pour manger chaux les
+                        vendredi​
+                    </li>
                     <li><a href="#">A nos poubelles:</a> Rien de mieux pour apprendre à glaner​</li>
                     <li><a href="#">Même pas fain :</a> vous voulez aidez les plus démunis : lancez-vous.​</li>
                 </ul>
@@ -126,7 +130,10 @@
             <div class="facebook">
                 <p class="aside-title">Page facebook</p>
 
-                <div class="fb-page" data-href="https://www.facebook.com/R%C3%A9cup-Alimentaire-March%C3%A9s-Poubelles-Lille-223676804439629/?fref=ts" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false"></div>
+                <div class="fb-page"
+                     data-href="https://www.facebook.com/R%C3%A9cup-Alimentaire-March%C3%A9s-Poubelles-Lille-223676804439629/?fref=ts"
+                     data-tabs="timeline" data-small-header="false" data-adapt-container-width="true"
+                     data-hide-cover="false" data-show-facepile="false"></div>
 
             </div>
         {% endblock %}
@@ -135,22 +142,25 @@
 
 </div>
 
+<script src="{{ asset("vendor/jquery.min.js") }}"></script>
+
+<script src="{{ asset("vendor/moment.min.js") }}"></script>
 <footer>
-    <p>Contenu du footer ici</p>
+    <div class="container"><p class="footer-element"><a href="#">Mentions légales</a> - <a href="{{ path('app_app_cgu') }}">CGU</a> - <a
+                    href="#">Contact</a></p></div>
+
 </footer>
 
-
 {% block javascript %}
-    <script src="{{ asset("vendor/jquery.min.js") }}"></script>
-    <script src="{{ asset("vendor/moment.min.js") }}"></script>
     <script src="{{ asset("vendor/fullcalendar.js") }}"></script>
     <script src="{{ asset("js/bootstrap.js") }}"></script>
 
     <div id="fb-root"></div>
-    <script>(function(d, s, id) {
+    <script>(function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
+            js = d.createElement(s);
+            js.id = id;
             js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.5";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));</script>

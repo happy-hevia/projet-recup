@@ -7,19 +7,41 @@
  {% endblock %}
 
  {% block article %}
+	 <h2>Calendrier des événements</h2>
 	 <div id='calendar'></div>
 
+	<h2>Derniers événements</h2>
+	 {% for e in evenementsCreation %}
+		 <a class="lienEvenement" href="{{ path('app_app_description',{id : e.id}) }}">
+			 <div class="row evenement">
+				 <p class="evenement-image">
+					 {% if e.picture is not empty %}
+						 <img src="{{ asset( 'upload/'~e.picture) }}" alt="image événement"/>
+					 {% else %}
+						 <img src="{{ asset('css/imageEvenementDefaut.jpg') }}" alt="Image de décoration par défault">
+					 {% endif %}
+				 </p>
 
-	 {% for e in evenements %}
-	<div class="evenement" style="border: 2px solid black; margin-top: 5px;">
-	{{ e.title }} 
-	{{ e.author}} 
-	{{ e.hour|date('h:m')}} 
-	{{e.day|date('d/m/Y') }}
-	{{ e.picture }}
-	{{ e.content | raw}} 
-	{{e.created|date('d/m/Y h:m:s') }} 
-	<a href="{{ path('app_app_description', {'id' : e.id}) }}"> lien</a>
-</div>
+				 <div class="evenement-description">
+					 <p class="evenement-titre">{{ e.title }}</p>
+					 	<p class="evenement-contenu">{{ e.content  }}</p>
+					 <p class="evenement-information">
+						 {% if e.day is not empty %}
+						 	{{ e.day|date('d/m/Y') }}
+						 {% endif %}
+						 {% if e.hour is not empty %}
+							 à {{ e.hour|date('h:m') }}
+						 {% endif %}
+						  par
+						 {{ e.author }}</p>
+				 </div>
+				 {% if e.day is not empty %}
+				 	{% if date(e.day) >= date() %}
+						<div class="AVenir">À venir</div>
+
+					{% endif %}
+				 {% endif %}
+			 </div>
+		 </a>
 {% endfor %} 
 {% endblock %}
