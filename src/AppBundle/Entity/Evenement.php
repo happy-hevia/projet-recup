@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class Evenement
 {
 	/**
-	 * @Assert\File(maxSize="3000000", maxSizeMessage="Le fichier dois être inférieur à 3mo")
+	 * @Assert\Image(maxSize="3000000", maxSizeMessage="Le fichier dois être inférieur à 3mo", mimeTypesMessage="Le fichier doit être une image valide")
 	 */
 	private $file;
 	
@@ -33,7 +33,7 @@ class Evenement
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255, nullable=false)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="Le titre ne doit pas être vide")
      * @Assert\Length(min=7, max=255, minMessage="Le titre doit comporter au moins 7 caractères")
      */
     private $title;
@@ -93,6 +93,16 @@ class Evenement
     }
 
     /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
      * Set title
      *
      * @param string $title
@@ -107,13 +117,13 @@ class Evenement
     }
 
     /**
-     * Get title
+     * Get author
      *
      * @return string
      */
-    public function getTitle()
+    public function getAuthor()
     {
-        return $this->title;
+        return $this->author;
     }
 
     /**
@@ -131,13 +141,13 @@ class Evenement
     }
 
     /**
-     * Get author
+     * Get content
      *
      * @return string
      */
-    public function getAuthor()
+    public function getContent()
     {
-        return $this->author;
+        return $this->content;
     }
 
     /**
@@ -155,13 +165,13 @@ class Evenement
     }
 
     /**
-     * Get content
+     * Get hour
      *
-     * @return string
+     * @return \DateTime
      */
-    public function getContent()
+    public function getHour()
     {
-        return $this->content;
+        return $this->hour;
     }
 
     /**
@@ -179,15 +189,14 @@ class Evenement
     }
 
     /**
-     * Get hour
+     * Get created
      *
      * @return \DateTime
      */
-    public function getHour()
+    public function getCreated()
     {
-        return $this->hour;
+        return $this->created;
     }
-
 
     /**
      * Set created
@@ -204,13 +213,13 @@ class Evenement
     }
 
     /**
-     * Get created
+     * Get picture
      *
-     * @return \DateTime
+     * @return string
      */
-    public function getCreated()
+    public function getPicture()
     {
-        return $this->created;
+        return $this->picture;
     }
 
     /**
@@ -228,13 +237,13 @@ class Evenement
     }
 
     /**
-     * Get picture
+     * Get day
      *
-     * @return string
+     * @return \DateTime
      */
-    public function getPicture()
+    public function getDay()
     {
-        return $this->picture;
+        return $this->day;
     }
 
     /**
@@ -250,16 +259,6 @@ class Evenement
 
         return $this;
     }
-
-    /**
-     * Get day
-     *
-     * @return \DateTime
-     */
-    public function getDay()
-    {
-        return $this->day;
-    }
     
     /**
      * @ORM\PrePersist
@@ -268,41 +267,11 @@ class Evenement
     	$this->created = new \DateTime();
     }
     
-    /**
-     * Sets file.
-     *
-     * @param UploadedFile $file
-     */
-    public function setFile(UploadedFile $file = null)
-    {
-    	$this->file = $file;
-    }
-    
-    /**
-     * Get file.
-     *
-     * @return UploadedFile
-     */
-    public function getFile()
-    {
-    	return $this->file;
-    }
-    
-    
-    
-//     uppload d'image
     public function getAbsolutePath()
     {
     	return null === $this->picture
     	? null
     	: $this->getUploadRootDir().'/'.$this->picture;
-    }
-    
-    public function getWebPath()
-    {
-    	return null === $this->picture
-    	? null
-    	: $this->getUploadDir().'/'.$this->picture;
     }
     
     protected function getUploadRootDir()
@@ -312,11 +281,22 @@ class Evenement
     	return __DIR__.'/../../../web/'.$this->getUploadDir();
     }
     
+    
+    
+//     uppload d'image
+
     protected function getUploadDir()
     {
     	// get rid of the __DIR__ so it doesn't screw up
     	// when displaying uploaded doc/image in the view.
     	return 'upload';
+    }
+    
+    public function getWebPath()
+    {
+    	return null === $this->picture
+    	? null
+    	: $this->getUploadDir().'/'.$this->picture;
     }
     
     public function upload()
@@ -341,5 +321,25 @@ class Evenement
 
     // clean up the file property as you won't need it anymore
     $this->file = null;
+    }
+    
+    /**
+     * Get file.
+     *
+     * @return UploadedFile
+     */
+    public function getFile()
+    {
+    	return $this->file;
+    }
+    
+    /**
+     * Sets file.
+     *
+     * @param UploadedFile $file
+     */
+    public function setFile(UploadedFile $file = null)
+    {
+    	$this->file = $file;
     }
 }

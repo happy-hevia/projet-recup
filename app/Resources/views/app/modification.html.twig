@@ -13,7 +13,7 @@
 	<div class="formulaire-ajout">
 		<h1>Formulaire de modification de l'événement</h1>
 
-		{{ form_start(form, {'attr' : {'class': 'form-horizontal'}} ) }}
+		{{ form_start(form, {'attr' : {'class': 'form-horizontal', 'novalidate' : 'true'}} ) }}
 		{{ form_errors(form) }}
 
 		<div class="form-group">
@@ -74,13 +74,28 @@
 			{{ form_errors(form.content) }}
 		</div>
 
-		<button class="btn btn-default"><a href="{{ path('app_app_evenement') }}">Annuler</a></button>
-
-		{{ form_widget(form.remove, {'attr' : {'class' : 'btn btn-danger'}, 'label' : 'Supprimer'}) }}
+		<button type="button" class="btn btn-default"><a href="{{ path('app_app_evenement') }}">Annuler</a></button>
+		<button type="button" class="btn btn-danger" id="boutonSuppression2" data-toggle="modal" data-target="#modal-suppression2">Supprimer</button>
 		{{ form_widget(form.submit, {'attr' : {'class' : 'btn btn-success'}, 'label' : 'Modifier'}) }}
 		{{ form_rest(form) }}
 		{{ form_end(form) }}
 
 	</div>
 	{{ tinymce_init() }}
+
+	{# Modal de suppression #}
+
+	<div class="modal fade" id="modal-suppression2" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body">
+					<p>êtes vous sur de vouloir supprimer cet événement ?</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+					<a href="{{ path('supprimerEvenement', {id : evenement.id}) }}" type="button" class="btn btn-danger">Supprimer</a>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
 {% endblock %}

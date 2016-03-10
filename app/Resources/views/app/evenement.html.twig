@@ -8,7 +8,7 @@
 
  {% block article %}
 	 <h2>Calendrier des événements</h2>
-	 <div id='calendar'></div>
+	 <div id='calendar' class="calendar" ></div>
 
 	<h2>Derniers événements</h2>
 	 {% for e in evenementsCreation %}
@@ -27,13 +27,14 @@
 					 	<p class="evenement-contenu">{{ e.content  }}</p>
 					 <p class="evenement-information">
 						 {% if e.day is not empty %}
-						 	{{ e.day|date('d/m/Y') }}
+						 	Publié le {{ e.day|date('d/m/Y') }}
 						 {% endif %}
 						 {% if e.hour is not empty %}
 							 à {{ e.hour|date('h:m') }}
 						 {% endif %}
-						  par
-						 {{ e.author }}</p>
+						 {% if e.author is not empty %}
+							 par {{ e.author }}</p>
+						 {% endif %}
 				 </div>
 				 {% if e.day is not empty %}
 				 	{% if date(e.day) >= date() %}

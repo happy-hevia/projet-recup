@@ -8,17 +8,23 @@
 
 {% block article %}
     <br/>
-
+    {% if is_granted('ROLE_ADMIN') %}
+        <div class="pull-right">
+            <a href=" {{ path('app_app_modification', { id : evenement.id } ) }} "  class="btn btn-warning">Modifier l'événement</a>
+            <button class="btn btn-danger" id="boutonSuppression" data-toggle="modal" data-target="#modal-suppression">Supprimer</button>
+        </div>
+    {% endif %}
     <div class="description">
         <h1 class="description-titre">{{ evenement.title }}</h1>
         {% if evenement.picture is not empty %}
-            <p class="description-image" ><img  src="{{ asset('/upload/'~evenement.picture) }}" alt="image"/></p>
+            <p class="description-image"><img src="{{ asset('/upload/'~evenement.picture) }}" alt="image"/></p>
         {% endif %}
         {% if evenement.day is not empty %}
-            <p class="description-date"><span class="labelDate">Date de l'événement</span> : {{ evenement.day|date('d/m/Y') }}
-        {% endif %}
-        {% if evenement.hour is not empty %}
-           à {{ evenement.hour|date("H:i") }}</p>
+        <p class="description-date"><span class="labelDate">Date de l'événement</span>
+            : {{ evenement.day|date('d/m/Y') }}
+            {% endif %}
+            {% if evenement.hour is not empty %}
+            à {{ evenement.hour|date("H:i") }}</p>
         {% endif %}
         <div class="description-contenu">{{ evenement.content|raw }}</div>
         <p class="description-creation">Publié le {{ evenement.created|date('d/m/Y H:i') }}
@@ -27,5 +33,22 @@
             {% endif %}
         </p>
     </div>
+
+
+    {# Modal de suppression #}
+
+    <div class="modal fade" id="modal-suppression" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>êtes vous sur de vouloir supprimer cet événement ?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                    <a href="{{ path('supprimerEvenement', {id : evenement.id}) }}" type="button" class="btn btn-danger">Supprimer</a>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 
 {% endblock %}

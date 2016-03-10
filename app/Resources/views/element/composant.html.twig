@@ -1,33 +1,45 @@
 
-
 {#// 2 tri : un par date d'événement et par date de création#}
 
 {# cet element va s'afficher seulement si il n'y a pas d'autre élément calendar
     cad partout sauf dans le page événement #}
-    <div id="calendar"></div>
+<div id="calendar" class="calendar" ></div >
 
-
-<script src="{{ asset("vendor/jquery.min.js") }}"></script>
-<script>
+{# jquery.js est nécessaire et dois être insérer avant le script full calendar #}
+<script src="{{ asset("vendor/jquery.min.js") }}" ></script >
+<script >
     $(document).ready(function () {
 
         // page is now ready, initialize the calendar...
 
         $('#calendar').fullCalendar({
             // put your options and callbacks here
+            monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet',
+                'Aout', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+            dayNamesShort: ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'],
+            dayNames: ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'],
+            buttonText: {
+                today: "aujourd'hui"
+            },
+            backgroundColor: '#fff',
+            lang: 'fr',
             aspectRatio: 1,
             contentHeight: 'auto',
-            eventLimit: 3,
+            eventLimit: 2,
+            displayEventTime: true,
+            editatble: false,
+            eventStartEditable: false,
+            timeFormat: 'H:mm',
+
             events: [
                 {% for e in evenements %}
                 {
-                    allDay: true,
                     start: "{{ e.day|date('Y-m-d') }}T{{ e.hour|date('H:i:s') }}",
-                    title: '{{ e.title }}',
-                    color: '547129',
+                    color: '#547129',
                     editable: true,
                     url: '{{ path('app_app_description', {'id' : e.id } ) }}',
                     textColor: 'white',
+                    className: 'calendrier-evenement'
                 }
                 {% if not loop.last %}
                 ,
@@ -38,4 +50,4 @@
         })
 
     });
-</script>
+</script >

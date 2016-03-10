@@ -95,20 +95,12 @@ class AppController extends Controller {
 		$em = $this->getDoctrine()->getManager();
 		$evenements = $em->getRepository('AppBundle:Evenement' )->getAllEvents ();
 		$evenementsCreation = $em->getRepository('AppBundle:Evenement' )->getAllEventsByCreated();
-		$form = $this->createForm (EventType::class, $evenement)
-					->add('remove', SubmitType::class, array('attr' => array('label' => 'supprimer')));
-		
+		$form = $this->createForm (EventType::class, $evenement);
+
 		$form->handleRequest($request);
 		
 		if ($form->isSubmitted() && $form->isValid()){
-			// suppression
-			if($form->get('remove')->isClicked()){
-				$em->remove($evenement);
-				$em->flush();
-				
-			return $this->redirectToRoute('app_App_accueil');
-			}
-			
+
 			//modification
 			$evenement->upload();
 			$em->persist($evenement);
@@ -170,11 +162,9 @@ class AppController extends Controller {
 	{
 		$em = $this->getDoctrine ()->getManager ();
 		$evenements = $em->getRepository('AppBundle:Evenement' )->getAllEvents ();
-		$evenementsCreation = $em->getRepository('AppBundle:Evenement' )->getAllEventsByCreated();
-		
+
 		return $this->render(':element:composant.html.twig', array(
 				'evenements' => $evenements,
-				'evenementsCreation' => $evenementsCreation,
 		)) ;
 	}
 
@@ -186,6 +176,21 @@ class AppController extends Controller {
 
 
 		return $this->render(':app:cgu.html.twig');
+
+	}
+
+	/**
+	 * @route("/supprimerEvenement/{id}", name ="supprimerEvenement")
+	 */
+	public function SupprimerEvenementAction(Evenement $evenement)
+	{
+		$em = $this->getDoctrine()->getEntityManager();
+
+		$em->remove($evenement);
+		$em->flush();
+
+
+		return $this->redirectToRoute('app_app_evenement');
 
 	}
 }

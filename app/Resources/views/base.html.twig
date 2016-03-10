@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex" >
 
     <title> Poubelle en N(or)d - {% block title %}{% endblock %}</title>
     <link rel="stylesheet" href=" {{ asset('css/themeBootstrap.css') }}">
@@ -25,6 +26,14 @@
 
 <body>
 
+{% if is_granted('ROLE_ADMIN') %}
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <a href=" {{path('logout')}} " class="btn btn-default btn-xs pull-right">Se deconnecter</a>
+        <p class="navbar-text">Vous êtes connectez en tant qu'administrateur</p>
+    </div>
+</nav>
+{% endif %}
 <nav class="navbar navbar-default">
     {% block navbar %}
     <div class="container">
@@ -142,16 +151,14 @@
 
 </div>
 
-<script src="{{ asset("vendor/jquery.min.js") }}"></script>
-
-<script src="{{ asset("vendor/moment.min.js") }}"></script>
 <footer>
-    <div class="container"><p class="footer-element"><a href="#">Mentions légales</a> - <a href="{{ path('app_app_cgu') }}">CGU</a> - <a
-                    href="#">Contact</a></p></div>
+    <div class="container"><p class="footer-element"><a href="{{ path('app_app_cgu') }}">Mentions légales et CGU</a> - <a href="{{ path('login') }}">Administration</a></p></div>
 
 </footer>
 
 {% block javascript %}
+    <script src="{{ asset("vendor/jquery.min.js") }}"></script>
+    <script src="{{ asset("vendor/moment.min.js") }}"></script>
     <script src="{{ asset("vendor/fullcalendar.js") }}"></script>
     <script src="{{ asset("js/bootstrap.js") }}"></script>
 
