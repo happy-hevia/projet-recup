@@ -1,9 +1,6 @@
 
 {#// 2 tri : un par date d'événement et par date de création#}
 
-{# cet element va s'afficher seulement si il n'y a pas d'autre élément calendar
-    cad partout sauf dans le page événement #}
-<div id="calendar" class="calendar" ></div >
 
 {# jquery.js est nécessaire et dois être insérer avant le script full calendar #}
 <script src="{{ asset("vendor/jquery.min.js") }}" ></script >
@@ -30,6 +27,7 @@
             editatble: false,
             eventStartEditable: false,
             timeFormat: 'H:mm',
+            fixedWeekCount: false,
 
             events: [
                 {% for e in evenements %}

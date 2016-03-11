@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class Evenement
 {
 	/**
-	 * @Assert\Image(maxSize="3000000", maxSizeMessage="Le fichier dois être inférieur à 3mo", mimeTypesMessage="Le fichier doit être une image valide")
+	 * @Assert\Image(maxSize="1800000",  mimeTypesMessage="Le fichier doit être une image valide", maxSizeMessage="Votre fichier est trop gros ({{ size }}). L'image dois être inférieur à {{ limit }}.")
 	 */
 	private $file;
 	
@@ -41,7 +41,7 @@ class Evenement
     /**
      * @var string
      *
-     * @ORM\Column(name="author", type="string", length=255)
+     * @ORM\Column(name="author", type="string", length=255, nullable=true)
      */
     private $author;
 
@@ -57,13 +57,15 @@ class Evenement
      * @var \DateTime
      *
      * @ORM\Column(name="hour", type="time", nullable=true)
-     */
+     **/
+
     private $hour;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="day", type="date", nullable=true)
+     * @Assert\Range(min="-18 years", max="+18 years", minMessage="la date de l'événement ne peut pas se situer autant dans le passé", maxMessage="la date de l'événement ne peut pas se situer autant dans le futur")
      */
     private $day;
 

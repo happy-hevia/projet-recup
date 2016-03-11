@@ -4,42 +4,41 @@
 {# ... you will probably extends your base template, like base.html.twig #}
 {% extends 'base.html.twig' %}
 
+{% block title %} {{ parent() }} Connextion {% endblock %}
 
 {% block article %}
 
-    <div class="formulaire-connexion">
+    <div class="formulaire-connexion" >
 
-        <p class="lead">Vous devez vous connectez pour accéder au page de création et de modification des événements</p>
+        <p class="lead" >Vous devez vous connectez pour accéder au page de création et de modification des
+            événements</p >
 
-        <form action="{{ path('login_check') }}" method="post" class="form-horizontal">
-            <div class="form-group">
-                <label for="username" class="col-xs-4 control-label">Identifiant :</label>
-                <div class="col-xs-8">
-                    <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}"/>
-                </div>
-            </div>
+        <form action="{{ path('login_check') }}" method="post" class="form-horizontal" >
+            <div class="form-group" >
+                <label for="username" class="col-xs-4 control-label" >Identifiant :</label >
+                <div class="col-xs-8" >
+                    <input class="form-control" type="text" id="username" name="_username"
+                           value="{{ last_username }}" autofocus />
+                </div >
+            </div >
 
-            <div class="form-group">
-                <label for="password" class="col-xs-4 control-label">Mot de passe :</label>
-                <div class="col-xs-8"><input class="form-control" type="password" id="password" name="_password"/></div>
-            </div>
-
-            {#
-                If you want to control the URL the user
-                is redirected to on success (more details below)
-                <input type="hidden" name="_target_path" value="/account" />
-            #}
+            <div class="form-group" >
+                <label for="password" class="col-xs-4 control-label" >Mot de passe :</label >
+                <div class="col-xs-8" ><input class="form-control" type="password" id="password" name="_password" />
+                </div >
+            </div >
 
             {% if error %}
-                <p class="form-erreur">L'identifiant ou le mot de passe est incorrect</p>
+                <p class="form-erreur" >L'identifiant ou le mot de passe est incorrect</p >
             {% endif %}
-            <div class="pull-right">
-                <button class="btn btn-default"><a href="{{ path('app_app_evenement') }}">Annuler</a></button>
-                <button type="submit" class="btn btn-success">Se connecter</button>
-            </div>
-        </form>
+
+            <div class="pull-right" >
+                <a class="btn btn-default" href="{{ path('app_app_evenement') }}" >Annuler</a >
+                <button type="submit" class="btn btn-success" >Se connecter</button >
+            </div >
+        </form >
 
 
-    </div>
+    </div >
 
 {% endblock %}

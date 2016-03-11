@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
+{% block title %} {{ parent() }} Accueil {% endblock %}
+
  {% block navbarLien %}
      <li class="active"><a class="navbar-lien" href="{{ path('app_app_accueil') }}">Accueil</a></li>
      <li><a class="navbar-lien" href="{{ path('app_app_evenement') }}">evenement</a></li>
@@ -7,8 +9,9 @@
  {% endblock %}
 
 {% block baniere %}
-    <p><img class="col-span-12 baniere" src="{{ asset('css/home.png') }}" alt="baniere"></p>
+    <p><img class="col-span-12 baniere" src="{{ asset('css/images/home.png') }}" alt="baniere"></p>
 {% endblock %}
+
 {% block article %}
     <div class="accueil">
         <h1 class="titrePrincipale">Poubelle en N(or)d</h1>
@@ -73,5 +76,6 @@
             </li>
 
         </ul>
+
     </div>
 {% endblock %}

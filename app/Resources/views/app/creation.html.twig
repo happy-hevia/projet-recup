@@ -1,6 +1,8 @@
 
 {% extends 'base.html.twig' %}
 
+{% block title %} {{ parent() }} Création d'événement {% endblock %}
+
 {% block navbarLien %}
 	<li><a class="navbar-lien" href="{{ path('app_app_accueil') }}">Accueil</a></li>
 	<li><a class="navbar-lien" href="{{ path('app_app_evenement') }}">evenement</a></li>
@@ -9,10 +11,14 @@
 
 {% block article %}
 
+	<!--================================================
+	                Formulaire d'ajout
+	====================================================-->
+
 	<div class="formulaire-ajout">
 		<h1>Formulaire d'ajout d'événement</h1>
 
-		{{ form_start(form, {'attr' : {'class': 'form-horizontal', 'novalidate':'true'}} ) }}
+		{{ form_start(form, {'attr' : {'class': 'form-horizontal', 'novalidate':'novalidate'}} ) }}
 		{{ form_errors(form) }}
 
 		<div class="form-group">
@@ -80,5 +86,7 @@
 		{{ form_end(form) }}
 
 	</div>
+
+	<!-- permet d'initialiser tinymce : l'éditeur de texte wysiwyg -->
 	{{ tinymce_init() }}
 {% endblock %}

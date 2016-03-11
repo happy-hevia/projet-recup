@@ -1,48 +1,54 @@
- {% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ parent() }} Liste des événements {% endblock %}
 
  {% block navbarLien %}
-	 <li><a class="navbar-lien" href="{{ path('app_app_accueil') }}">Accueil</a></li>
-	 <li class="active"><a class="navbar-lien" href="{{ path('app_app_evenement') }}">evenement</a></li>
-	 <li><a class="navbar-lien" href="{{ path('app_app_creation') }}">creation</a></li>
+     <li ><a class="navbar-lien" href="{{ path('app_app_accueil') }}" >Accueil</a ></li >
+     <li class="active" ><a class="navbar-lien" href="{{ path('app_app_evenement') }}" >evenement</a ></li >
+     <li ><a class="navbar-lien" href="{{ path('app_app_creation') }}" >creation</a ></li >
  {% endblock %}
 
  {% block article %}
-	 <h2>Calendrier des événements</h2>
-	 <div id='calendar' class="calendar" ></div>
+     <h2 >Calendrier des événements</h2 >
 
-	<h2>Derniers événements</h2>
-	 {% for e in evenementsCreation %}
-		 <a class="lienEvenement" href="{{ path('app_app_description',{id : e.id}) }}">
-			 <div class="row evenement">
-				 <p class="evenement-image">
-					 {% if e.picture is not empty %}
-						 <img src="{{ asset( 'upload/'~e.picture) }}" alt="image événement"/>
-					 {% else %}
-						 <img src="{{ asset('css/imageEvenementDefaut.jpg') }}" alt="Image de décoration par défault">
-					 {% endif %}
-				 </p>
+     <div id="calendar" class="calendar" ></div >
 
-				 <div class="evenement-description">
-					 <p class="evenement-titre">{{ e.title }}</p>
-					 	<p class="evenement-contenu">{{ e.content  }}</p>
-					 <p class="evenement-information">
-						 {% if e.day is not empty %}
-						 	Publié le {{ e.day|date('d/m/Y') }}
-						 {% endif %}
-						 {% if e.hour is not empty %}
-							 à {{ e.hour|date('h:m') }}
-						 {% endif %}
-						 {% if e.author is not empty %}
-							 par {{ e.author }}</p>
-						 {% endif %}
-				 </div>
-				 {% if e.day is not empty %}
-				 	{% if date(e.day) >= date() %}
-						<div class="AVenir">À venir</div>
+     <h2 >Derniers événements</h2 >
+     {% for e in evenementsCreation %}
+         <a class="lienEvenement" href="{{ path('app_app_description',{id : e.id}) }}" >
+             <div class="row evenement" >
 
-					{% endif %}
-				 {% endif %}
-			 </div>
-		 </a>
-{% endfor %} 
+                 <p class="evenement-image" >
+                     {% if e.picture is not empty %}
+                         <img src="{{ asset( 'upload/'~e.picture) }}" alt="image événement" />
+                     {% else %}
+                         <img src="{{ asset('css/images/imageEvenementDefaut.jpg') }}" alt="Image de décoration par défault" >
+                     {% endif %}
+                 </p >
+
+                 <div class="evenement-description" >
+                     <p class="evenement-titre" >{{ e.title }}</p >
+                     <p class="evenement-contenu" >{{ e.content }}</p >
+                     <p class="evenement-information" >
+                         {% if e.created is not empty %}
+                             Publié le {{ e.created|date('d/m/Y à h:m') }}
+                         {% endif %}
+                         {% if e.author is not empty %}
+                             par {{ e.author }}
+                         {% endif %}
+                     </p >
+                 </div >
+
+                 <!-- affiche à venir si l'évenement est à venir -->
+                 {% if e.day is not empty and date(e.day) >= date() %}
+                     <div class="AVenir" >À venir</div >
+                 {% endif %}
+             </div >
+         </a >
+     {% endfor %}
+ {% endblock %}
+
+{% block calendrier %}
+    <!-- n'affiche pas le calendrier sur cet page de la sibebar sur cette page-->
+    {{ render(controller('AppBundle:App:Events')) }}
 {% endblock %}

@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
+{% block title %} {{ parent() }} Description d'un événement {% endblock %}
+
 {% block navbarLien %}
     <li><a class="navbar-lien" href="{{ path('app_app_accueil') }}">Accueil</a></li>
     <li class="active"><a class="navbar-lien" href="{{ path('app_app_evenement') }}">evenement</a></li>
@@ -27,7 +29,7 @@
             à {{ evenement.hour|date("H:i") }}</p>
         {% endif %}
         <div class="description-contenu">{{ evenement.content|raw }}</div>
-        <p class="description-creation">Publié le {{ evenement.created|date('d/m/Y H:i') }}
+        <p class="description-creation">Publié le {{ evenement.created|date('d/m/Y à H:i') }}
             {% if evenement.author is not empty %}
                 par {{ evenement.author }}
             {% endif %}
@@ -35,7 +37,7 @@
     </div>
 
 
-    {# Modal de suppression #}
+    {# Modal de suppression qui s'affiche lorsque que l'on demande supprimer l'événement #}
 
     <div class="modal fade" id="modal-suppression" tabindex="-1" role="dialog">
         <div class="modal-dialog">
@@ -45,7 +47,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-                    <a href="{{ path('supprimerEvenement', {id : evenement.id}) }}" type="button" class="btn btn-danger">Supprimer</a>
+                    <a href="{{ path('supprimerEvenement', {id : evenement.id}) }}" class="btn btn-danger">Supprimer</a>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->

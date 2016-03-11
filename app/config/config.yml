@@ -38,20 +38,6 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
-    globals:
-        moisfr:
-            - Janvier
-            - Février
-            - Mars
-            - Avril
-            - Mai
-            - Juin
-            - Juillet
-            - Aout
-            - Septembre
-            - Octobre
-            - Novembre
-            - Décembre
 
 # Doctrine Configuration
 doctrine:
@@ -84,8 +70,10 @@ swiftmailer:
     spool:     { type: memory }
 
 stfalcon_tinymce:
-        selector: ".tinymce"
-        language: %locale%
-        theme:
-            simple:
-                theme: "modern"
+    selector: ".tinymce"
+    language: %locale%
+    theme:
+        simple:
+            theme: "modern"
+            toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignjustify"
+            style_formats: false

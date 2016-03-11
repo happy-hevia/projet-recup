@@ -1,6 +1,8 @@
 
 {% extends 'base.html.twig' %}
 
+{% block title %} {{ parent() }} Modification d'événement{% endblock %}
+
 {% block navbarLien %}
 	<li><a class="navbar-lien" href="{{ path('app_app_accueil') }}">Accueil</a></li>
 	<li class="active"><a class="navbar-lien" href="{{ path('app_app_evenement') }}">evenement</a></li>
@@ -10,10 +12,14 @@
 {% block article %}
 <br />
 
+	<!--================================================
+				Formulaire de modification
+	====================================================-->
+
 	<div class="formulaire-ajout">
 		<h1>Formulaire de modification de l'événement</h1>
 
-		{{ form_start(form, {'attr' : {'class': 'form-horizontal', 'novalidate' : 'true'}} ) }}
+		{{ form_start(form, {'attr' : {'class': 'form-horizontal', 'novalidate' : 'novalidate'}} ) }}
 		{{ form_errors(form) }}
 
 		<div class="form-group">
@@ -74,16 +80,18 @@
 			{{ form_errors(form.content) }}
 		</div>
 
-		<button type="button" class="btn btn-default"><a href="{{ path('app_app_evenement') }}">Annuler</a></button>
+		<a class="btn btn-default" href="{{ path('app_app_evenement') }}">Annuler</a>
 		<button type="button" class="btn btn-danger" id="boutonSuppression2" data-toggle="modal" data-target="#modal-suppression2">Supprimer</button>
 		{{ form_widget(form.submit, {'attr' : {'class' : 'btn btn-success'}, 'label' : 'Modifier'}) }}
 		{{ form_rest(form) }}
 		{{ form_end(form) }}
 
 	</div>
+
+	<!-- permet d'initialiser tinymce: l'éditeur de texte pour le contenu -->
 	{{ tinymce_init() }}
 
-	{# Modal de suppression #}
+	{# Modal de suppression qui s'affiche lorsque l'on demande la suppression de l'événement #}
 
 	<div class="modal fade" id="modal-suppression2" tabindex="-1" role="dialog">
 		<div class="modal-dialog">
@@ -92,8 +100,8 @@
 					<p>êtes vous sur de vouloir supprimer cet événement ?</p>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-					<a href="{{ path('supprimerEvenement', {id : evenement.id}) }}" type="button" class="btn btn-danger">Supprimer</a>
+					<button class="btn btn-default" data-dismiss="modal">Annuler</button>
+					<a href="{{ path('supprimerEvenement', {id : evenement.id}) }}" class="btn btn-danger">Supprimer</a>
 				</div>
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
