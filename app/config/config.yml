@@ -77,3 +77,22 @@ stfalcon_tinymce:
             theme: "modern"
             toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignjustify"
             style_formats: false
+
+assetic:
+    debug:          '%kernel.debug%'
+    use_controller: false
+
+    filters:
+        cssrewrite: ~
+    assets:
+        all_javascript:
+            inputs:
+                - 'node_modules\jquery\dist\jquery.min.js'
+                - 'node_modules\moment\min\moment.min.js'
+                - 'node_modules\fullcalendar\dist\fullcalendar.min.js'
+                - 'node_modules\bootstrap\dist\js\bootstrap.min.js'
+        all_stylesheets:
+            inputs:
+                - 'css\themeBootstrap.css'
+                - 'node_modules\fullcalendar\dist\fullcalendar.min.css'
+                - 'css\style.min.css'
