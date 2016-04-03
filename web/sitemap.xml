@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<urlset xmlns="http://www.google.com/schemas/sitemap/0.84">
+    <url>
+        <loc>http://www.poubelle-en-nord.fr</loc>
+    </url>
+    <url>
+        <loc>http://www.poubelle-en-nord.fr/evenement</loc>
+    </url>
+    <url>
+        <loc>http://www.poubelle-en-nord.fr/creation</loc>
+    </url>
+    <url>
+        <loc>http://www.poubelle-en-nord.fr/login</loc>
+    </url>
+    <url>
+        <loc>http://www.poubelle-en-nord.fr/cgu</loc>
+    </url>
+</urlset>

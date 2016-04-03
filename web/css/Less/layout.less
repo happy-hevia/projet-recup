@@ -1,0 +1,113 @@
+//personnalisation des layouts
+
+body {
+    background-color: #F1EDEB;
+}
+
+/*=============================================
+                  NAV
+===============================================*/
+
+nav{
+    &.navbar-fixed-top{
+        min-height: 0;
+        height: 30px;
+        background-color: #8c3f39;
+        -webkit-box-shadow:  0 1px 1px #444;
+        -moz-box-shadow:  0 1px 1px #444;
+        box-shadow:  0 1px 1px #444;
+
+        .navbar-text{
+            min-width: 100px;
+            height: 30px;
+            overflow: hidden;
+            line-height: 30px;
+            margin:0 15px;
+        }
+        .btn-xs{
+            margin-top: 2px;
+        }
+    }
+
+    &.navbar-default {
+        background-color: rgba(0, 0, 0, 0.7);
+        color: white;
+        -webkit-box-shadow:  0 2px 3px black;
+        -moz-box-shadow:  0 2px  3px black;
+        box-shadow:  0 2px  3px black;
+
+        //lien vers page d'accueil
+        .navbar-text.titre {
+            margin: 30px 15px;
+            font-size:1.5em;
+            text-shadow: 2px 2px 2px #000;
+
+            &:hover a{
+                text-decoration: none;
+            }
+
+            a{
+                color: #ccc;
+            }
+            .or {
+                color: rgb(232, 231, 15);
+            }
+        }
+
+       // Lien vers les pages
+        a.navbar-lien{
+            font-size: 1.2em;
+
+            &:hover, &:active{
+                color: #bab90e;
+            }
+        }
+    }
+
+}
+
+
+
+
+
+article {
+    margin-bottom: 86px;
+}
+
+aside {
+
+}
+
+/*=============================================
+                  Footer
+===============================================*/
+
+footer {
+    height: 50px;
+    width: 100%;
+    color: #ccc;
+    background-color: rgba(0, 0, 0, 0.85);
+    margin-top: 33px;
+
+    .footer-element{
+        line-height: 50px;
+        text-align: center;
+        margin-bottom: 0;
+
+        a{
+
+            color: grey;
+        }
+    }
+}
+
+
+/*=============================================
+                  Media queries
+===============================================*/
+
+@media all and (max-width: 780px) {
+    article {
+        margin-bottom: 45px;
+    }
+}
