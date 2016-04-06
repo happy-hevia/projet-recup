@@ -21,7 +21,7 @@ class AppController extends Controller
     {
 
 
-        return $this->render(':App:accueil.html.twig', array());
+        return $this->render(':app:accueil.html.twig', array());
     }
 
     /**
@@ -39,7 +39,7 @@ class AppController extends Controller
             $e->setContent(strip_tags(html_entity_decode($e->getContent())));
         }
 
-        return $this->render(':App:evenement.html.twig', array(
+        return $this->render(':app:evenement.html.twig', array(
             'evenements' => $evenements,
             'evenementsCreation' => $evenementsCreation,
         ));
@@ -53,7 +53,7 @@ class AppController extends Controller
     public function descriptionAction(Evenement $evenement)
     {
 
-        return $this->render(':App:description.html.twig', array(
+        return $this->render(':app:description.html.twig', array(
             'evenement' => $evenement,
         ));
     }
@@ -79,7 +79,7 @@ class AppController extends Controller
 
             return $this->redirectToRoute('app_app_description', array('id' => $evenement->getId()));
         }
-        return $this->render(':App:creation.html.twig', array(
+        return $this->render(':app:creation.html.twig', array(
             'form' => $form->createView(),
 
         ));
@@ -110,7 +110,7 @@ class AppController extends Controller
             return $this->redirectToRoute('app_app_description', array('id' => $id));
         }
 
-        return $this->render(':App:modification.html.twig', array(
+        return $this->render(':app:modification.html.twig', array(
             'evenement' => $evenement,
             'form' => $form->createView(),
         ));
