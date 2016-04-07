@@ -14,38 +14,10 @@
      <div id="calendar" class="calendar" ></div >
 
      <h2 >Derniers événements</h2 >
-     {% for e in evenementsCreation %}
-         <a class="lienEvenement" href="{{ path('app_app_description',{id : e.id}) }}" >
-             <div class="row evenement" >
+     <div class="wrapper-evenement" id="wrapper-evenement" data-evenement="{{ nombreTotalEvenements[1] }}">
+         {{ include(':element/evenement.html.twig') }}
+     </div>
 
-                 <p class="evenement-image" >
-                     {% if e.picture is not empty %}
-                         <img src="{{ asset( 'upload/'~e.picture) }}" alt="image événement" />
-                     {% else %}
-                         <img src="{{ asset('css/images/imageEvenementDefaut.jpg') }}" alt="Image de décoration par défault" >
-                     {% endif %}
-                 </p >
-
-                 <div class="evenement-description" >
-                     <p class="evenement-titre" >{{ e.title }}</p >
-                     <p class="evenement-contenu" >{{ e.content }}</p >
-                     <p class="evenement-information" >
-                         {% if e.created is not empty %}
-                             Publié le {{ e.created|date('d/m/Y à h:m') }}
-                         {% endif %}
-                         {% if e.author is not empty %}
-                             par {{ e.author }}
-                         {% endif %}
-                     </p >
-                 </div >
-
-                 <!-- affiche à venir si l'évenement est à venir -->
-                 {% if e.day is not empty and date(e.day) >= date() %}
-                     <div class="AVenir" >À venir</div >
-                 {% endif %}
-             </div >
-         </a >
-     {% endfor %}
  {% endblock %}
 
 {% block calendrier %}

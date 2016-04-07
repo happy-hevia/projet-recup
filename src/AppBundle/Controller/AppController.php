@@ -31,8 +31,9 @@ class AppController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+        $nombreTotalEvenements = $em->getRepository('AppBundle:Evenement')->getNumberEvents();
         $evenements = $em->getRepository('AppBundle:Evenement')->getAllEvents();
-        $evenementsCreation = $em->getRepository('AppBundle:Evenement')->getAllEventsByCreated();
+        $evenementsCreation = $em->getRepository('AppBundle:Evenement')->getSeveralEventsByCreated();
 
         //		supprime les balises et transforme les caractères spéciaux en caractères html
         foreach ($evenements as $id => $e) {
@@ -42,6 +43,7 @@ class AppController extends Controller
         return $this->render(':app:evenement.html.twig', array(
             'evenements' => $evenements,
             'evenementsCreation' => $evenementsCreation,
+            'nombreTotalEvenements' => $nombreTotalEvenements
         ));
     }
 
@@ -192,6 +194,21 @@ class AppController extends Controller
 
 
         return $this->redirectToRoute('app_app_evenement');
+    }
+
+    /**
+     * @route("/recupererPlusEvenements/{nombreEvenementsPresents}", requirements={ "nombreEvenementsPresents" = "^\d+"})
+     *
+     * récupère plus d'événements dans la page d'événments grâce à une requête ajax
+     */
+    public function RecupererPlusEvenementsAction($nombreEvenementsPresents)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $nouveauxEvenements = $em->getRepository('AppBundle:Evenement')->getSeveralEventsByCreated($nombreEvenementsPresents);
+
+        return $this->render(':element:evenement.html.twig', array(
+            'evenementsCreation' => $nouveauxEvenements
+        ));
 
     }
 }

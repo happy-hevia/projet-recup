@@ -12,18 +12,36 @@ use Doctrine\ORM\EntityRepository;
  */
 class EvenementRepository extends EntityRepository
 {
+
 	public function getAllEvents(){
 		return $this->getEntityManager()
 					->createQuery('
-						SELECT e FROM AppBundle:Evenement e ORDER BY e.day DESC ')
+						SELECT e FROM AppBundle:Evenement e ORDER BY e.day DESC')
 					->getResult();
 	}
-	public function getAllEventsByCreated(){
+	public function getSeveralEventsByCreated($firstResult = 0){
+
+
 		return $this->getEntityManager()
 					->createQuery('
 						SELECT e FROM AppBundle:Evenement e ORDER BY e.created DESC ')
+					->setFirstResult($firstResult)
+					->setMaxResults(6)
 					->getResult();
 	}
-	
-	
+
+	/**
+	 * @return mixed
+	 * @throws \Doctrine\ORM\NonUniqueResultException
+	 * recupère le nombre d'événements total présent dans la base de donnée
+	 */
+	public function getNumberEvents()
+	{
+		return $this->getEntityManager()
+			->createQuery('
+						SELECT COUNT(e.id) FROM AppBundle:Evenement e')
+			->getOneOrNullResult();
+	}
+
+
 }

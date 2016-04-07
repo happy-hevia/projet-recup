@@ -4,7 +4,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Debug\Debug;
 
 /*Petit script qui permet d'utiliser le livereload avec grunt*/
-echo '<script src="//localhost:35729/livereload.js"></script>';
+//echo '<script src="//localhost:35729/livereload.js"></script>';
 
 // If you don't want to setup permissions the proper way, just uncomment the following PHP line
 // read http://symfony.com/doc/current/book/installation.html#checking-symfony-application-configuration-and-setup

@@ -91,6 +91,7 @@ assetic:
                 - 'node_modules\moment\min\moment.min.js'
                 - 'node_modules\fullcalendar\dist\fullcalendar.min.js'
                 - 'node_modules\bootstrap\dist\js\bootstrap.min.js'
+                - 'js\ajoutePlusEvenements.js'
         all_stylesheets:
             inputs:
                 - 'css\themeBootstrap.css'
