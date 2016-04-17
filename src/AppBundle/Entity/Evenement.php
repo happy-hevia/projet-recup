@@ -15,11 +15,11 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  */
 class Evenement
 {
-	/**
-	 * @Assert\Image(maxSize="1800000",  mimeTypesMessage="Le fichier doit être une image valide", maxSizeMessage="Votre fichier est trop gros ({{ size }}). L'image dois être inférieur à {{ limit }}.")
-	 */
-	private $file;
-	
+    /**
+     * @Assert\Image(maxSize="1800000")
+     */
+    private $file;
+
     /**
      * @var int
      *
@@ -33,8 +33,8 @@ class Evenement
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255, nullable=false)
-     * @Assert\NotBlank(message="Le titre ne doit pas être vide")
-     * @Assert\Length(min=7, max=255, minMessage="Le titre doit comporter au moins 7 caractères")
+     * @Assert\NotBlank()
+     * @Assert\Length(min=7, max=255)
      */
     private $title;
 
@@ -49,7 +49,7 @@ class Evenement
      * @var string
      *
      * @ORM\Column(name="content", type="text")
-     * @Assert\NotBlank(message="Vous devez donner une description de l'événement")
+     * @Assert\NotBlank()
      */
     private $content;
 
@@ -65,7 +65,7 @@ class Evenement
      * @var \DateTime
      *
      * @ORM\Column(name="day", type="date", nullable=true)
-     * @Assert\Range(min="-18 years", max="+18 years", minMessage="la date de l'événement ne peut pas se situer autant dans le passé", maxMessage="la date de l'événement ne peut pas se situer autant dans le futur")
+     * @Assert\Range(min="-18 years", max="+18 years")
      */
     private $day;
 
@@ -82,6 +82,13 @@ class Evenement
      * @ORM\Column(name="picture", type="text", nullable=true)
      */
     private $picture;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="picture_min", type="text", nullable=true)
+     */
+    private $picture_min;
 
 
     /**
@@ -261,70 +268,209 @@ class Evenement
 
         return $this;
     }
-    
+
     /**
      * @ORM\PrePersist
      */
-    public function setCreatedWithCurrentDate(){
-    	$this->created = new \DateTime();
+    public function setCreatedWithCurrentDate()
+    {
+        $this->created = new \DateTime();
     }
-    
+
     public function getAbsolutePath()
     {
-    	return null === $this->picture
-    	? null
-    	: $this->getUploadRootDir().'/'.$this->picture;
+        return null === $this->picture
+            ? null
+            : $this->getUploadRootDir() . '/' . $this->picture;
     }
-    
+
     protected function getUploadRootDir()
     {
-    	// the absolute directory path where uploaded
-    	// documents should be saved
-    	return __DIR__.'/../../../web/'.$this->getUploadDir();
+        // the absolute directory path where uploaded
+        // documents should be saved
+        return __DIR__ . '/../../../../www/poubellesenor/' . $this->getUploadDir();
     }
-    
-    
-    
+
+
 //     uppload d'image
 
     protected function getUploadDir()
     {
-    	// get rid of the __DIR__ so it doesn't screw up
-    	// when displaying uploaded doc/image in the view.
-    	return 'upload';
+        // get rid of the __DIR__ so it doesn't screw up
+        // when displaying uploaded doc/image in the view.
+        return 'upload';
     }
-    
+
     public function getWebPath()
     {
-    	return null === $this->picture
-    	? null
-    	: $this->getUploadDir().'/'.$this->picture;
+        return null === $this->picture
+            ? null
+            : $this->getUploadDir() . '/' . $this->picture;
     }
-    
+
     public function upload()
     {
-    	// the file property can be empty if the field is not required
-    if (null === $this->getFile()) {
-        return;
+        // the file property can be empty if the field is not required
+        if (null === $this->getFile()) {
+            return;
+        }
+        $pictureNewName = uniqid().$this->getFile()->getClientOriginalName();
+        // use the original file name here but you should
+        // sanitize it at least to avoid any security issues
+
+        // move takes the target directory and then the
+        // target filename to move to
+        $this->getFile()->move(
+            $this->getUploadRootDir(),
+            $pictureNewName
+        );
+
+        // set the path property to the filename where you've saved the file
+        $this->picture = $pictureNewName;
+
+        // clean up the file property as you won't need it anymore
+        $this->file = null;
     }
 
-    // use the original file name here but you should
-    // sanitize it at least to avoid any security issues
+    /**
+     * @ORM\PreUpdate
+     */
+    public function generateMiniaturePreUpdate()
+    {
 
-    // move takes the target directory and then the
-    // target filename to move to
-    $this->getFile()->move(
-        $this->getUploadRootDir(),
-        $this->getFile()->getClientOriginalName()
-    );
 
-    // set the path property to the filename where you've saved the file
-    $this->picture = $this->getFile()->getClientOriginalName();
+        $extensionPicture = pathinfo($this->picture, PATHINFO_EXTENSION);
+        $extensionsMiniaturesAllows = array('jpg', 'jpeg', 'png');
 
-    // clean up the file property as you won't need it anymore
-    $this->file = null;
+        if (in_array($extensionPicture, $extensionsMiniaturesAllows)) {
+
+
+            // créer la miniature à partir de l'image originel
+            $max = 178;
+            if ($extensionPicture == "jpg" || $extensionPicture == "jpeg") {
+                $img = imagecreatefromjpeg('upload/' . $this->picture);
+
+            } else if ($extensionPicture == "png") {
+                $img = imagecreatefrompng('upload/' . $this->picture);
+            }
+            $x = imagesx($img);
+            $y = imagesy($img);
+
+            $ratio = $x / $y;
+
+            $xoffset = 0;
+            $yoffset = 0;
+
+            if ($x > $y) {
+                $ny = $max;
+                $nx = $ny * $ratio;
+                $xoffset = ($x - $y) / 2;
+            } else {
+                $nx = $max;
+                $ny = $nx * $ratio;
+                $yoffset = ($y - $x) / 2;
+            }
+
+
+            $nimg = imagecreatetruecolor($max, $max);
+            imagecopyresampled($nimg, $img, 0, 0, $xoffset, $yoffset, $nx, $ny, $x, $y);
+
+//        déplace la miniature dans le bon dossier sous le bon nom selon l'extension
+//        et ajoute le nom du fichier à l'entité avant de persist
+
+            if ($extensionPicture == "jpeg" || $extensionPicture == "jpg") {
+                $nomFichier = 'min-' . $this->picture;
+                fopen($nomFichier, 'a+');
+                imagepng($nimg, $this->getUploadRootDir() . '/' . $nomFichier);
+                $this->picture_min = $nomFichier;
+            } else if ($extensionPicture == "png") {
+                $nomFichier = 'min-' . $this->picture;
+                fopen($nomFichier, 'a+');
+                imagejpeg($nimg, $this->getUploadRootDir() . '/' . $nomFichier);
+                $this->picture_min = $nomFichier;
+            }
+        }
+
     }
-    
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function generateMiniaturePrePersist()
+    {
+
+
+        $extensionPicture = pathinfo($this->picture, PATHINFO_EXTENSION);
+        $extensionsMiniaturesAllows = array('jpg', 'jpeg', 'png');
+//        exit(dump(in_array($extensionPicture, $extensionsMiniaturesAllows)));
+
+        if (in_array($extensionPicture, $extensionsMiniaturesAllows)) {
+
+
+            // créer la miniature à partir de l'image originel
+            $max = 178;
+            if ($extensionPicture == "jpg" || $extensionPicture == "jpeg") {
+                $img = imagecreatefromjpeg('upload/' . $this->picture);
+
+            } else if ($extensionPicture == "png") {
+                $img = imagecreatefrompng('upload/' . $this->picture);
+            }
+            $x = imagesx($img);
+            $y = imagesy($img);
+
+            $ratio = $x / $y;
+
+            $xoffset = 0;
+            $yoffset = 0;
+
+            if ($x > $y) {
+                $ny = $max;
+                $nx = $ny * $ratio;
+                $xoffset = ($x - $y) / 2;
+            } else {
+                $nx = $max;
+                $ny = $nx * $ratio;
+                $yoffset = ($y - $x) / 2;
+            }
+
+
+            $nimg = imagecreatetruecolor($max, $max);
+            imagecopyresampled($nimg, $img, 0, 0, $xoffset, $yoffset, $nx, $ny, $x, $y);
+
+//        déplace la miniature dans le bon dossier sous le bon nom selon l'extension
+//        et ajoute le nom du fichier à l'entité avant de persist
+
+            if ($extensionPicture == "jpeg" || $extensionPicture == "jpg") {
+                $nomFichier = 'min-' . $this->picture;
+                fopen($nomFichier, 'a+');
+                imagepng($nimg, $this->getUploadRootDir() . '/' . $nomFichier);
+                $this->picture_min = $nomFichier;
+            } else if ($extensionPicture == "png") {
+                $nomFichier = 'min-' . $this->picture;
+                fopen($nomFichier, 'a+');
+                imagejpeg($nimg, $this->getUploadRootDir() . '/' . $nomFichier);
+                $this->picture_min = $nomFichier;
+            }
+        }
+
+    }
+
+
+    /**
+     * @ORM\PreRemove
+     */
+    public function removePictureFile()
+    {
+        if (file_exists($this->getUploadRootDir() . '/' . $this->picture) && $this->picture_min != null) {
+            unlink($this->getUploadRootDir() . '/' . $this->picture);
+        }
+        if (file_exists($this->getUploadRootDir() . '/' . $this->picture_min) && $this->picture_min != null) {
+            unlink($this->getUploadRootDir() . '/' . $this->picture_min);
+        }
+    }
+
+
+
     /**
      * Get file.
      *
@@ -332,9 +478,9 @@ class Evenement
      */
     public function getFile()
     {
-    	return $this->file;
+        return $this->file;
     }
-    
+
     /**
      * Sets file.
      *
@@ -342,6 +488,30 @@ class Evenement
      */
     public function setFile(UploadedFile $file = null)
     {
-    	$this->file = $file;
+        $this->file = $file;
+    }
+
+    /**
+     * Set pictureMin
+     *
+     * @param string $pictureMin
+     *
+     * @return Evenement
+     */
+    public function setPictureMin($pictureMin)
+    {
+        $this->picture_min = $pictureMin;
+
+        return $this;
+    }
+
+    /**
+     * Get pictureMin
+     *
+     * @return string
+     */
+    public function getPictureMin()
+    {
+        return $this->picture_min;
     }
 }

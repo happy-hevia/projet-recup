@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData">
+  <component name="PublishConfigData" serverName="ProjetRecup">
     <serverData>
       <paths name="ProjetRecup">
         <serverdata>
           <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/www/poubellesenor" local="$PROJECT_DIR$/web" web="/www/poubellesenor" />
+            <mapping deploy="/BO-poubellesenor" local="$PROJECT_DIR$" web="/BO-poubellesenor" />
           </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/.idea" />
+            <excludedPath local="true" path="$PROJECT_DIR$/bin" />
+            <excludedPath local="true" path="$PROJECT_DIR$/.settings" />
+            <excludedPath local="true" path="$PROJECT_DIR$/dev" />
+            <excludedPath local="true" path="$PROJECT_DIR$/tests" />
+            <excludedPath local="true" path="$PROJECT_DIR$/var" />
+            <excludedPath local="true" path="$PROJECT_DIR$/vendor" />
+          </excludedPaths>
         </serverdata>
       </paths>
       <paths name="projetBootstrap">

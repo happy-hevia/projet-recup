@@ -98,15 +98,33 @@ class AppController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $form = $this->createForm(EventType::class, $evenement);
+        //récupère les anciennes images pour pouvoir les supprimer
+        $fichierPicture = $evenement->getPicture();
+        $fichierPictureMiniature = $evenement->getPictureMin();
 
+        $form = $this->createForm(EventType::class, $evenement);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+//            permet de réinitialiser url de l'image miniature dans le cas où la miniature n'est pas créé comme dans
+//            le cas de bug ou pour les gifs
+            $evenement->setPictureMin(null);
+
             //modification
             $evenement->upload();
             $em->persist($evenement);
+
+//            si l'internaute change d'image pour l'événement alors on supprime les anciennes
+            if($fichierPicture != $evenement->getPicture()){
+                if (file_exists( __DIR__ . '/../../../../www/poubellesenor/upload/' . $fichierPicture) && $fichierPicture != null) {
+                    unlink( __DIR__ . '/../../../../www/poubellesenor/upload/' . $fichierPicture);
+                }
+                if ( file_exists(__DIR__ . '/../../../../www/poubellesenor/upload/' . $fichierPictureMiniature) && $fichierPictureMiniature != null) {
+                    unlink( __DIR__ . '/../../../../www/poubellesenor/upload/' . $fichierPictureMiniature);
+                }
+            }
+
             $em->flush();
 
             return $this->redirectToRoute('app_app_description', array('id' => $id));
@@ -205,6 +223,11 @@ class AppController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
         $nouveauxEvenements = $em->getRepository('AppBundle:Evenement')->getSeveralEventsByCreated($nombreEvenementsPresents);
+
+        //		supprime les balises et transforme les caractères spéciaux en caractères html
+        foreach ($nouveauxEvenements as $id => $e) {
+            $e->setContent(strip_tags(html_entity_decode($e->getContent())));
+        }
 
         return $this->render(':element:evenement.html.twig', array(
             'evenementsCreation' => $nouveauxEvenements
