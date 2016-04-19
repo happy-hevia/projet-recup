@@ -11,6 +11,8 @@
     <meta name="keywords" content="récupération, alimentaire, collectif, glanage, poubelle en nord, marché" >
     <meta name="robots" content="noindex" >
     <link rel="author" href="humans.txt" />
+    <link rel="icon" type="image/png" href="{{ asset('css/43315166.png') }}" />
+
 
     <title > Poubelle en N(or)d - {% block title %}{% endblock %}</title >
 
@@ -112,6 +114,7 @@
 
     <aside class="col-xs-12 col-sm-4 col-md-4" >
         {% block sidebar %}
+            {% block contact %}
             <div class="contact" >
                 <h3 class="contact-titre" >Nous contacter</h3 >
                 <div class="email" >
@@ -120,8 +123,9 @@
                         <li class="contact-email-element" >compost_club@riseup.net</li >
                     </ul >
                 </div >
-                <a class="btn btn-default center-block">En savoir plus</a>
+                <a href="{{ path('app_app_contact') }}" class="btn button-or center-block">En savoir plus</a>
             </div >
+            {% endblock contact %}
             {% block calendrier %}
                 <div id="calendar" class="calendar" ></div >
                 {{ render(controller('AppBundle:App:Events')) }}
@@ -151,7 +155,7 @@
             <hr >
 
             <div class="facebook" >
-                <p class="aside-title" >Page facebook</p >
+                <p class="aside-title" >Se tenir au courant de la récup sur Lille</p >
 
                 <div class="fb-page"
                      data-href="https://www.facebook.com/R%C3%A9cup-Alimentaire-March%C3%A9s-Poubelles-Lille-223676804439629/?fref=ts"
