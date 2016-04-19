@@ -234,4 +234,14 @@ class AppController extends Controller
         ));
 
     }
+
+    /**
+     * @route("/contact")
+     */
+    public function contactAction()
+    {
+
+
+        return $this->render(':app:contact.html.twig', array());
+    }
 }
