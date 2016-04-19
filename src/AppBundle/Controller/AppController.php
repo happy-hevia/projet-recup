@@ -116,12 +116,12 @@ class AppController extends Controller
             $em->persist($evenement);
 
 //            si l'internaute change d'image pour l'événement alors on supprime les anciennes
-            if($fichierPicture != $evenement->getPicture()){
-                if (file_exists( __DIR__ . '/../../../../www/poubellesenor/upload/' . $fichierPicture) && $fichierPicture != null) {
-                    unlink( __DIR__ . '/../../../../www/poubellesenor/upload/' . $fichierPicture);
+            if ($fichierPicture != $evenement->getPicture()) {
+                if (file_exists(__DIR__ . '/../../../../www/poubellesenor/upload/' . $fichierPicture) && $fichierPicture != null) {
+                    unlink(__DIR__ . '/../../../../www/poubellesenor/upload/' . $fichierPicture);
                 }
-                if ( file_exists(__DIR__ . '/../../../../www/poubellesenor/upload/' . $fichierPictureMiniature) && $fichierPictureMiniature != null) {
-                    unlink( __DIR__ . '/../../../../www/poubellesenor/upload/' . $fichierPictureMiniature);
+                if (file_exists(__DIR__ . '/../../../../www/poubellesenor/upload/' . $fichierPictureMiniature) && $fichierPictureMiniature != null) {
+                    unlink(__DIR__ . '/../../../../www/poubellesenor/upload/' . $fichierPictureMiniature);
                 }
             }
 

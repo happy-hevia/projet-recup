@@ -2,7 +2,6 @@ $(document).ready(function() {
 
     // page is now ready, initialize the calendar...
 
-	alert('lkjl');
     $('#calendar').fullCalendar({
         // put your options and callbacks here
     	timeFormat: 'H(:mm)',

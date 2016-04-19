@@ -3,15 +3,23 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Evenement
  *
  * @ORM\Table(name="evenement")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\EvenementRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Evenement
 {
+    /**
+     * @Assert\Image(maxSize="1800000",  mimeTypesMessage="Le fichier doit être une image valide", maxSizeMessage="Votre fichier est trop gros ({{ size }}). L'image dois être inférieur à {{ limit }}.")
+     */
+    private $file;
+
     /**
      * @var int
      *
@@ -25,13 +33,15 @@ class Evenement
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255, nullable=false)
+     * @Assert\NotBlank(message="Le titre ne doit pas être vide")
+     * @Assert\Length(min=7, max=255, minMessage="Le titre doit comporter au moins 7 caractères")
      */
     private $title;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="author", type="string", length=255)
+     * @ORM\Column(name="author", type="string", length=255, nullable=true)
      */
     private $author;
 
@@ -39,6 +49,7 @@ class Evenement
      * @var string
      *
      * @ORM\Column(name="content", type="text")
+     * @Assert\NotBlank(message="Vous devez donner une description de l'événement")
      */
     private $content;
 
@@ -46,13 +57,15 @@ class Evenement
      * @var \DateTime
      *
      * @ORM\Column(name="hour", type="time", nullable=true)
-     */
+     **/
+
     private $hour;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="day", type="date", nullable=true)
+     * @Assert\Range(min="-18 years", max="+18 years", minMessage="la date de l'événement ne peut pas se situer autant dans le passé", maxMessage="la date de l'événement ne peut pas se situer autant dans le futur")
      */
     private $day;
 
@@ -70,6 +83,13 @@ class Evenement
      */
     private $picture;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="picture_min", type="text", nullable=true)
+     */
+    private $picture_min;
+
 
     /**
      * Get id
@@ -79,6 +99,16 @@ class Evenement
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
     }
 
     /**
@@ -96,13 +126,13 @@ class Evenement
     }
 
     /**
-     * Get title
+     * Get author
      *
      * @return string
      */
-    public function getTitle()
+    public function getAuthor()
     {
-        return $this->title;
+        return $this->author;
     }
 
     /**
@@ -120,13 +150,13 @@ class Evenement
     }
 
     /**
-     * Get author
+     * Get content
      *
      * @return string
      */
-    public function getAuthor()
+    public function getContent()
     {
-        return $this->author;
+        return $this->content;
     }
 
     /**
@@ -144,13 +174,13 @@ class Evenement
     }
 
     /**
-     * Get content
+     * Get hour
      *
-     * @return string
+     * @return \DateTime
      */
-    public function getContent()
+    public function getHour()
     {
-        return $this->content;
+        return $this->hour;
     }
 
     /**
@@ -168,37 +198,13 @@ class Evenement
     }
 
     /**
-     * Get hour
+     * Get created
      *
      * @return \DateTime
      */
-    public function getHour()
+    public function getCreated()
     {
-        return $this->hour;
-    }
-
-    /**
-     * Set date
-     *
-     * @param \DateTime $date
-     *
-     * @return Evenement
-     */
-    public function setDate($date)
-    {
-        $this->date = $date;
-
-        return $this;
-    }
-
-    /**
-     * Get date
-     *
-     * @return \DateTime
-     */
-    public function getDate()
-    {
-        return $this->date;
+        return $this->created;
     }
 
     /**
@@ -216,13 +222,13 @@ class Evenement
     }
 
     /**
-     * Get created
+     * Get picture
      *
-     * @return \DateTime
+     * @return string
      */
-    public function getCreated()
+    public function getPicture()
     {
-        return $this->created;
+        return $this->picture;
     }
 
     /**
@@ -240,12 +246,109 @@ class Evenement
     }
 
     /**
-     * Get picture
+     * Get day
      *
-     * @return string
+     * @return \DateTime
      */
-    public function getPicture()
+    public function getDay()
     {
-        return $this->picture;
+        return $this->day;
+    }
+
+    /**
+     * Set day
+     *
+     * @param \DateTime $day
+     *
+     * @return Evenement
+     */
+    public function setDay($day)
+    {
+        $this->day = $day;
+
+        return $this;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setCreatedWithCurrentDate()
+    {
+        $this->created = new \DateTime();
+    }
+
+    public function getAbsolutePath()
+    {
+        return null === $this->picture
+            ? null
+            : $this->getUploadRootDir() . '/' . $this->picture;
+    }
+
+    protected function getUploadRootDir()
+    {
+        // the absolute directory path where uploaded
+        // documents should be saved
+        return __DIR__ . '/../../../web/' . $this->getUploadDir();
+    }
+
+
+//     uppload d'image
+
+    protected function getUploadDir()
+    {
+        // get rid of the __DIR__ so it doesn't screw up
+        // when displaying uploaded doc/image in the view.
+        return 'upload';
+    }
+
+    public function getWebPath()
+    {
+        return null === $this->picture
+            ? null
+            : $this->getUploadDir() . '/' . $this->picture;
+    }
+
+    public function upload()
+    {
+        // the file property can be empty if the field is not required
+        if (null === $this->getFile()) {
+            return;
+        }
+
+        // use the original file name here but you should
+        // sanitize it at least to avoid any security issues
+
+        // move takes the target directory and then the
+        // target filename to move to
+        $this->getFile()->move(
+            $this->getUploadRootDir(),
+            $this->getFile()->getClientOriginalName()
+        );
+
+        // set the path property to the filename where you've saved the file
+        $this->picture = $this->getFile()->getClientOriginalName();
+
+        // clean up the file property as you won't need it anymore
+        $this->file = null;
+    }
+
+    /**
+     * Get file.
+     *
+     * @return UploadedFile
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
+     * Sets file.
+     *
+     * @param UploadedFile $file
+     */
+    public function setFile(UploadedFile $file = null)
+    {
+        $this->file = $file;
     }
 }

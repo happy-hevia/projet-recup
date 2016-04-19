@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="ProjetRecup" preserveTimestamps="false">
+  <component name="PublishConfigData" serverName="ProjetRecup" preserveTimestamps="false" uploadOnCheckin="3ee85046-6fb1-4c1d-ae08-706378557356">
     <serverData>
       <paths name="ProjetRecup">
         <serverdata>
@@ -10,12 +10,17 @@
           </mappings>
           <excludedPaths>
             <excludedPath local="true" path="$PROJECT_DIR$/.idea" />
-            <excludedPath local="true" path="$PROJECT_DIR$/bin" />
             <excludedPath local="true" path="$PROJECT_DIR$/.settings" />
             <excludedPath local="true" path="$PROJECT_DIR$/dev" />
             <excludedPath local="true" path="$PROJECT_DIR$/tests" />
             <excludedPath local="true" path="$PROJECT_DIR$/var" />
-            <excludedPath local="true" path="$PROJECT_DIR$/vendor" />
+            <excludedPath path="/BO-poubellesenor/web/app.php" />
+            <excludedPath path="/BO-poubellesenor/web/app_dev.php" />
+            <excludedPath path="/BO-poubellesenor/composer.json" />
+            <excludedPath path="/www/poubellesenor/app.php" />
+            <excludedPath path="/www/poubellesenor/app_dev.php" />
+            <excludedPath path="/www/poubellesenor/upload" />
+            <excludedPath local="true" path="$PROJECT_DIR$/.idea" />
           </excludedPaths>
         </serverdata>
       </paths>
@@ -27,5 +32,6 @@
         </serverdata>
       </paths>
     </serverData>
+    <option name="myUploadOnCheckinName" value="ProjetRecup" />
   </component>
 </project>

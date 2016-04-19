@@ -22,27 +22,15 @@
             lang: 'fr',
             aspectRatio: 1,
             contentHeight: 'auto',
-            eventLimit: 2,
-            displayEventTime: true,
-            editatble: false,
-            eventStartEditable: false,
-            timeFormat: 'H:mm',
-            fixedWeekCount: false,
 
             events: [
-                {% for e in evenements %}
                 {
-                    start: "{{ e.day|date('Y-m-d') }}T{{ e.hour|date('H:i:s') }}",
+                    start: "2016-01-31",
+                    end:"2016-02-02",
                     color: '#547129',
-                    editable: true,
-                    url: '{{ path('app_app_description', {'id' : e.id } ) }}',
                     textColor: 'white',
                     className: 'calendrier-evenement'
                 }
-                {% if not loop.last %}
-                ,
-                {% endif %}
-                {% endfor %}
             ]
 
         })
