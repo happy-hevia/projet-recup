@@ -67,8 +67,8 @@ swiftmailer:
     encryption: ssl
     auth_mode:  login
     host:       smtp.gmail.com
-    username:   happyhevia@gmail.com
-    password:   toopa07!
+    username:   '%mailer_user%'
+    password:   '%mailer_password%'
 
 stfalcon_tinymce:
     selector: ".tinymce"

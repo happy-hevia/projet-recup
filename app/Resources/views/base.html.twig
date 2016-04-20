@@ -14,7 +14,7 @@
     <link rel="icon" type="image/png" href="{{ asset('css/images/favicon.png') }}" />
 
 
-    <title > Poubelle en N(or)d - {% block title %}{% endblock %}</title >
+    <title > Poubelles en or - {% block title %}{% endblock %}</title >
 
     {% block styleshetts %}
         {% stylesheets '@all_stylesheets' %}
@@ -40,7 +40,7 @@
 {% if is_granted('ROLE_ADMIN') %}
     <nav class="navbar navbar-inverse navbar-fixed-top" >
         <div class="container" >
-            <a href=" {{ path('logout') }} " class="btn btn-default btn-xs pull-right" >Se deconnecter</a >
+            <a href=" {{ path('logout') }} " class="btn btn-default btn-xs pull-right" >Se déconnecter</a >
             <p class="navbar-text" >Vous êtes connectez en tant qu'administrateur</p >
         </div >
     </nav >
@@ -145,8 +145,8 @@
             <div class="utile" >
                 <p class="aside-title" >Liens utiles</p >
                     <ul >
-                        <li ><strong ><a href="https://framacalc.org/LillePoubelles" >Framacalc des lieux de recup : </a >​</strong >Tableur des lieux de recup sur Lille et ses environs.</li >
-                        <li ><strong ><a href="http://freegan.fr/" >Freegan : </a ></strong>Un bon site pour apprendre les bases du <i >Freeganisme.</i > et de la recup alimentaire</li >
+                        <li ><strong ><a href="https://framacalc.org/LillePoubelles" >Framacalc des lieux de récup' : </a >​</strong >Tableur des lieux de récup' sur Lille et ses environs.</li >
+                        <li ><strong ><a href="http://freegan.fr/" >Freegan : </a ></strong>Un bon site pour apprendre les bases du <i >Freeganisme</i > et de la récup' alimentaire</li >
                         <li ><strong ><a href="http://trashwiki.org/en/Main_Page" >Trash wiki : </a >​</strong >Site collaboratif anglophone sur le freeganisme et le glanage.</li >
                     </ul >
             </div >

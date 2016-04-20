@@ -261,10 +261,11 @@ class AppController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $contenuEnPlus = " (Envoyé depuis le site poubelles-en-or.fr)";
             $message = \Swift_Message::newInstance()
-                ->setSubject($contact->getObjet())
+                ->setSubject($contact->getObjet() . $contenuEnPlus)
                 ->setFrom($contact->getEmail())
-                ->setTo('cyprien.esteves@laposte.net')
+                ->setTo('compost_club@riseup.net')
                 ->setBody($contact->getContenu());
 
             $this->get('mailer')->send($message);
