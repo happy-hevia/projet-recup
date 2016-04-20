@@ -11,7 +11,7 @@
     <meta name="keywords" content="récupération, alimentaire, collectif, glanage, poubelle en nord, marché" >
     <meta name="robots" content="noindex" >
     <link rel="author" href="humans.txt" />
-    <link rel="icon" type="image/png" href="{{ asset('css/43315166.png') }}" />
+    <link rel="icon" type="image/png" href="{{ asset('css/images/favicon.png') }}" />
 
 
     <title > Poubelle en N(or)d - {% block title %}{% endblock %}</title >
@@ -65,7 +65,7 @@
                 <span class="icon-bar" ></span >
             </button >
 
-            <p class="navbar-text titre" ><a href="{{ path('app_app_accueil') }}" >Poubelle en N
+            <p class="navbar-text titre" ><a href="{{ path('app_app_accueil') }}" >Poubelles en N
                     <span class="or" >or</span >
                     d
                 </a >
@@ -77,9 +77,8 @@
             <ul class="nav navbar-nav pull-right" >
                 <!-- permet de les éléments comme actif dans les autres pages -->
                 {% block navbarLien %}
-                    <li ><a class="navbar-lien" href="{{ path('app_app_accueil') }}" >Accueil</a ></li >
-                    <li ><a class="navbar-lien" href="{{ path('app_app_evenement') }}" >evenement</a ></li >
-                    <li ><a class="navbar-lien" href="{{ path('app_app_creation') }}" >creation</a ></li >
+                    {{ include(':element:navbar-lien.html.twig') }}
+
                 {% endblock %}
             </ul >
         </div ><!-- /.navbar-collapse -->
