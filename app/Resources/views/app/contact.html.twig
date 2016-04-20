@@ -8,23 +8,98 @@
 
 
 {% block article %}
-    <div class="panel panel-default" >
+    <div class="panel panel-default" xmlns="http://www.w3.org/1999/html" >
         <div class="panel-heading" ><h2 >Contactez-nous !</h2 ></div >
         <div class="panel-body" >
+
+            {% for flashMessage in app.session.flashbag.get('ValidationEnvoie') %}
+                <div class="alert alert-success" id="confirmation-envoie" >
+                    <p ><span class="glyphicon glyphicon-info-sign" aria-hidden="true" ></span > {{ flashMessage }}</p >
+                </div >
+            {% endfor %}
+
             <div class="row" >
                 <div class="well text-center" >
                     <p >Si tu recherche de produits alimentaire de récup' pour un événement particulier, une association ou toi-même, n'hésite pas à nous contacter. Nous rappelons juste que la possibilité de faire des récup's et les quantités de nourriture que nous avons à notre disposition sont toutefois très variable et nous ne pouvons rien garantir !</p >
-                    <button class="btn button-or">J'ai besoin de la nourriture</button>
+                    <button class="btn button-or" id="bouton-besoin" data-objet="J'ai besoin de la nourriture" >J'ai besoin de nourriture</button >
                 </div >
 
                 <div class="well text-center" >
                     <p >Si tu aimerais t'investir, si participer aux récup's ou aux actions t'intéresse, envoie nous un petit mail avec tes motivations. Tu pourras ainsi être ajouté sur la liste mail du collectif, et être tenu au courant tout en communiquant avec des glaneuses et glaneurs super sympa !</p >
-                    <button class="btn button-or">Je veux participer</button>
+                    <button class="btn button-or" id="bouton-participer" data-objet="Je veux participer" >Je veux participer</button >
                 </div >
 
                 <div class="well text-center" >
-                    <p >Si tu as du matériel à donner (de cusisine notamment) ou des grosses quantités de nourriture qui te restent sur les bras pour diverses raisons, nous serons sûrement très intéressé-e-s et nous nous organiserons pour aller chercher ça !</p >
-                    <button class="btn button-or">Je peux aider</button>
+                    <p >Si tu as du matériel à donner (de cusisine notamment) ou des grosses quantités de nourriture qui te restent sur les bras pour diverses raisons, nous serons serons sûrement très intéressé-e-s et nous nous organiserons pour aller chercher ça !</p >
+                    <button class="btn button-or" id="bouton-aider" data-objet="Je peux aider" >Je peux aider</button >
+                </div >
+                <div class="form-contact panel panel-default" id="formulaire-contact" >
+                    <div class="panel-heading" ><p class="form-contact-title text-center" >Formulaire de contact</p >
+                    </div >
+                    <div class="panel-body" >
+                        {{ form_start(form, {'attr' : {'class': 'form-horizontal', 'novalidate':'novalidate', 'id' : 'formulaire-concret'}} ) }}
+                        <div class="form-erreur" >
+                            {{ form_errors(form) }}
+                        </div >
+
+
+                        <div class="form-group" >
+                            {{ form_label(form.email, "Votre adresse email*:", {'label_attr' : {'class': 'col-xs-5 label-control'}}) }}
+                            <div class="col-xs-7" >
+                                {{ form_widget(form.email, {'attr' : {'class': 'form-control', 'type' : 'email'}} ) }}
+                            </div >
+                        </div >
+                        <div class="form-erreur" >
+                            {{ form_errors(form.email) }}
+                        </div >
+
+                        <div class="form-group" >
+                            {{ form_label(form.objet, "Objet* :", {'label_attr' : {'class': 'col-xs-5 label-control'}}) }}
+                            <div class="col-xs-7" >
+                                {{ form_widget(form.objet, {'attr' : {'class': 'form-control'}} ) }}
+                            </div >
+                        </div >
+                        <div class="form-erreur" >
+                            {{ form_errors(form.objet) }}
+                        </div >
+
+                        <div class="form-group" >
+                            {{ form_label(form.contenu, "Contenu de l'email* :", {'label_attr' : {'class': 'col-xs-5 label-control'}}) }}
+                            <div class="col-xs-7" >
+                                {{ form_widget(form.contenu, {'attr' : {'class': 'form-control'}}) }}
+                            </div >
+                        </div >
+                        <div class="form-erreur" >
+                            {{ form_errors(form.contenu) }}
+                        </div >
+
+                        <p >* Champs obligatoires</p >
+
+                        <div class="contact-bouton" >
+                            <a class="btn btn-default" id="annuler-contact" >Annuler</a >
+                            <button type="button" class="btn btn-success" id="bouton-contact-suppression" data-toggle="modal" data-target="#modal-contact-suppression" >Envoyer</button >
+                        </div >
+                        {# Modal de suppression qui s'affiche lorsque l'on demande l'envois de l'email #}
+                        <div class="modal fade" id="modal-contact-suppression" tabindex="-1" role="dialog" >
+                            <div class="modal-dialog" >
+                                <div class="modal-content" >
+                                    <div class="modal-body" >
+                                        <p >Êtes vous sûr d'envoyer cet email ?</p >
+                                    </div >
+                                    <div class="modal-footer" >
+                                        <button class="btn btn-default" data-dismiss="modal" >Annuler</button >
+                                        {{ form_widget(form.submit, {'attr' : {'class' : 'btn btn-success'}, 'label' : 'Valider'}) }}
+                                    </div >
+                                </div ><!-- /.modal-content -->
+                            </div ><!-- /.modal-dialog -->
+                        </div ><!-- /.modal -->
+                        {{ form_end(form) }}
+                    </div >
+                    <noscript >
+                        <div class="alert alert-warning" >
+                            <span class="glyphicon glyphicon-info-sign" aria-hidden="true" ></span > Vous devez activer le javascript pour envoyer un email
+                        </div >
+                    </noscript >
                 </div >
             </div >
         </div >
@@ -32,5 +107,5 @@
 {% endblock %}
 
 {% block contact %}
-{# n'affiche pas le block contact dans la page contact #}
+    {# n'affiche pas le block contact dans la page contact #}
 {% endblock %}
