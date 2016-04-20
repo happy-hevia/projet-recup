@@ -5,12 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a7637864-f8a1-4669-aefa-6892db1995aa" name="Default" comment="Test d'un lien vers un issue : PB-1 &#10;">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/css/favicon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Contact.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AppBundle/Repository/ContactRepository.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/css/Less/modules/contact.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/formulaireContact.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/app/accueil.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/app/accueil.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/app/contact.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/app/contact.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/base.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/css/Less/base.less" afterPath="$PROJECT_DIR$/web/css/Less/base.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/config.yml" afterPath="$PROJECT_DIR$/app/config/config.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/AppController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/AppController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/css/Less/style.less" afterPath="$PROJECT_DIR$/web/css/Less/style.less" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/css/style.min.css" afterPath="$PROJECT_DIR$/web/css/style.min.css" />
     </list>
     <ignored path=".idea/dataSources.local.xml" />
@@ -59,64 +62,35 @@
       <file leaf-file-name="AppController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/AppController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-22.461538">
-              <caret line="244" column="44" selection-start-line="244" selection-start-column="44" selection-end-line="244" selection-end-column="44" />
+            <state vertical-scroll-proportion="-4.7349396">
+              <caret line="269" column="44" selection-start-line="269" selection-start-column="44" selection-end-line="269" selection-end-column="44" />
               <folding>
-                <element signature="e#783#804#1#PHP" expanded="true" />
-                <element signature="e#867#888#1#PHP" expanded="true" />
-                <element signature="e#956#977#1#PHP" expanded="true" />
-                <element signature="e#5814#5835#1#PHP" expanded="true" />
-                <element signature="e#5884#5914#0#PHP" expanded="true" />
+                <element signature="e#40#69#0#PHP" expanded="true" />
+                <element signature="e#1043#1064#1#PHP" expanded="true" />
+                <element signature="e#1127#1148#1#PHP" expanded="true" />
+                <element signature="e#1216#1237#1#PHP" expanded="true" />
+                <element signature="e#6074#6095#1#PHP" expanded="true" />
+                <element signature="e#8900#8924#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="accueil.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Resources/views/app/accueil.html.twig">
+      <file leaf-file-name="config.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/config/config.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.506024">
-              <caret line="72" column="15" selection-start-line="54" selection-start-column="8" selection-end-line="72" selection-end-column="15" />
+            <state vertical-scroll-proportion="-23.754387">
+              <caret line="99" column="0" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="base.html.twig" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
+      <file leaf-file-name="parameters.yml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/config/parameters.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.45661157">
-              <caret line="13" column="70" selection-start-line="13" selection-start-column="70" selection-end-line="13" selection-end-column="70" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="evenement.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Resources/views/app/evenement.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.2692308">
-              <caret line="5" column="52" selection-start-line="5" selection-start-column="52" selection-end-line="5" selection-end-column="52" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="base.less" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/css/Less/base.less">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.153846">
-              <caret line="26" column="16" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="style.less" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/css/Less/style.less">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.5384617">
-              <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
+            <state vertical-scroll-proportion="0.26666668">
+              <caret line="8" column="26" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -125,8 +99,50 @@
       <file leaf-file-name="contact.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/app/contact.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.384615">
-              <caret line="35" column="11" selection-start-line="35" selection-start-column="11" selection-end-line="35" selection-end-column="11" />
+            <state vertical-scroll-proportion="-3.9230769">
+              <caret line="39" column="136" selection-start-line="39" selection-start-column="136" selection-end-line="39" selection-end-column="136" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Evenement.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Evenement.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-1.3076923">
+              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="54" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="formulaireContact.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/js/formulaireContact.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="49" column="9" selection-start-line="49" selection-start-column="9" selection-end-line="49" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Contact.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Contact.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-1.3076923">
+              <caret line="47" column="33" selection-start-line="47" selection-start-column="33" selection-end-line="47" selection-end-column="33" />
+              <folding>
+                <element signature="e#36#68#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="contact.less" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/css/Less/modules/contact.less">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-1.3076923">
+              <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -136,7 +152,6 @@
   </component>
   <component name="FrameworkCommandLineHistory">
     <commandsHistory>
-      <command text="s cache:clear" />
       <command text="s cache:clear --env=prod" />
       <command text="s assetic:dump" />
       <command text="s cache:clear --env=prod" />
@@ -161,6 +176,7 @@
       <command text="php bin/console doctrine:schema:update --dump-sql" />
       <command text="php bin/console doctrine:schema:update --force" />
       <command text="s assetic:dump" />
+      <command text="s doctrine:generate:entity" />
     </commandsHistory>
   </component>
   <component name="Git.Settings">
@@ -171,13 +187,12 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Dummy.txt" root0="SKIP_INSPECTION" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/AppBundle/Form/Type/EventType.php" />
-        <option value="$PROJECT_DIR$/web/css/modules/evenement.less" />
-        <option value="$PROJECT_DIR$/web/css/modules/accueil.less" />
-        <option value="$PROJECT_DIR$/web/css/layout.less" />
         <option value="$PROJECT_DIR$/web/js/test.js" />
         <option value="$PROJECT_DIR$/web/css/style.css" />
         <option value="$PROJECT_DIR$/web/css/style.less" />
@@ -205,7 +220,6 @@
         <option value="$PROJECT_DIR$/../../bin/apache/apache2.4.17/bin/php.ini" />
         <option value="C:/Windows/php.ini" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Evenement.php" />
-        <option value="$PROJECT_DIR$/app/config/config.yml" />
         <option value="$PROJECT_DIR$/app/config/security.yml" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/../../bin/php/php5.6.16/php.ini" />
@@ -220,11 +234,16 @@
         <option value="$PROJECT_DIR$/app/Resources/views/app/description.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/app/creation.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/element/navbar-lien.html.twig" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Controller/AppController.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/app/accueil.html.twig" />
         <option value="$PROJECT_DIR$/web/css/Less/base.less" />
-        <option value="$PROJECT_DIR$/app/Resources/views/app/contact.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
+        <option value="$PROJECT_DIR$/web/css/Less/style.less" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Entity/Contact.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/app/contact.html.twig" />
+        <option value="$PROJECT_DIR$/web/js/formulaireContact.js" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/AppController.php" />
+        <option value="$PROJECT_DIR$/web/css/Less/modules/contact.less" />
+        <option value="$PROJECT_DIR$/app/config/config.yml" />
       </list>
     </option>
   </component>
@@ -395,7 +414,39 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="projetRecup" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="projetRecup" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="projetRecup" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="projetRecup" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AppBundle" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -427,81 +478,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="projetRecup" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="projetRecup" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="element" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="projetRecup" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="projetRecup" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="projetRecup" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="projetRecup" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Resources" />
+              <option name="myItemId" value="config" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -517,7 +494,7 @@
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.HTML" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
-    <property name="SearchEverywhereHistoryKey" value="e&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/Resources/views/app/evenement.html.twig&#10;evenem&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/Resources/views/app/evenement.html.twig&#10;contact.&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/Resources/views/app/contact.html.twig&#10;bas&#9;FILE&#9;file://C:/wamp/www/projetRecup/web/css/Less/base.less&#10;base&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/Resources/views/base.html.twig&#10;acc&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/Resources/views/app/accueil.html.twig&#10;evenement.&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/Resources/views/app/evenement.html.twig&#10;calendar.j&#9;FILE&#9;file://C:/wamp/www/projetRecup/web/js/calendar.js&#10;routi&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/config/routing_dev.yml&#10;routing_dev&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/config/routing_dev.yml&#10;appker&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/AppKernel.php&#10;COMPOSER&#9;FILE&#9;file://C:/wamp/www/projetRecup/composer.json&#10;evene&#9;FILE&#9;file://C:/wamp/www/projetRecup/src/AppBundle/Entity/Evenement.php&#10;fr.xlf&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/Resources/translations/validators.fr.xlf&#10;confi&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/config/config.yml&#10;param&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/config/parameters.yml&#10;security.ym&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/config/security.yml&#10;pa&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/config/parameters.yml&#10;appc&#9;FILE&#9;file://C:/wamp/www/projetRecup/src/AppBundle/Controller/AppController.php&#10;modification&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/Resources/views/app/modification.html.twig&#10;eve&#9;FILE&#9;file://C:/wamp/www/projetRecup/src/AppBundle/Entity/Evenement.php&#10;repos&#9;FILE&#9;file://C:/wamp/www/projetRecup/src/AppBundle/Repository/EvenementRepository.php&#10;config&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/config/config.yml&#10;conf&#9;FILE&#9;file://C:/wamp/www/projetRecup/web/config.php&#10;repo&#9;FILE&#9;file://C:/wamp/www/projetRecup/src/AppBundle/Repository/EvenementRepository.php&#10;ajout&#9;FILE&#9;file://C:/wamp/www/projetRecup/web/js/ajoutePlusEvenements.js&#10;even&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/Resources/views/element/evenement.html.twig&#10;layo&#9;FILE&#9;file://C:/wamp/www/projetRecup/web/css/Less/layout.less&#10;desc&#9;FILE&#9;file://C:/wamp/www/projetRecup/web/css/Less/modules/description.less&#10;app&#9;FILE&#9;file://C:/wamp/www/projetRecup/src/AppBundle/Controller/AppController.php&#10;dev&#9;FILE&#9;file://C:/wamp/www/projetRecup/web/app_dev.php&#10;para&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/config/parameters.yml&#10;evenementL&#9;FILE&#9;file://C:/wamp/www/projetRecup/web/css/Less/modules/evenement.less&#10;login&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/Resources/views/app/login.html.twig&#10;appcon&#9;FILE&#9;file://C:/wamp/www/projetRecup/src/AppBundle/Controller/AppController.php&#10;evenement&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/Resources/views/app/evenement.html.twig&#10;accue&#9;FILE&#9;file://C:/wamp/www/projetRecup/web/css/Less/modules/accueil.less&#10;accueil&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/Resources/views/app/accueil.html.twig&#10;web/config&#9;FILE&#9;file://C:/wamp/www/projetRecup/web/config.php&#10;mod&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/Resources/views/app/modification.html.twig&#10;creat&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/Resources/views/app/creation.html.twig&#10;crea&#9;FILE&#9;file://C:/wamp/www/projetRecup/web/css/Less/modules/creation.less&#10;c&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/config/config.yml&#10;st&#9;FILE&#9;file://C:/wamp/www/projetRecup/web/css/style.less&#10;sty&#9;FILE&#9;file://C:/wamp/www/projetRecup/web/css/style.min.css&#10;k&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/AppKernel.php&#10;con&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/config/config.yml&#10;composant&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/Resources/views/element/composant.html.twig&#10;style&#9;FILE&#9;file://C:/wamp/www/projetRecup/web/css/style.css&#10;LOGIN&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/Resources/views/app/login.html.twig" />
+    <property name="SearchEverywhereHistoryKey" value="param&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/config/parameters.yml&#10;config&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/config/config.yml&#10;even&#9;FILE&#9;file://C:/wamp/www/projetRecup/src/AppBundle/Entity/Evenement.php&#10;conta&#9;FILE&#9;file://C:/wamp/www/projetRecup/src/AppBundle/Entity/Contact.php&#10;creat&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/Resources/views/app/creation.html.twig&#10;app&#9;FILE&#9;file://C:/wamp/www/projetRecup/src/AppBundle/Controller/AppController.php&#10;modif&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/Resources/views/app/modification.html.twig&#10;mod&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/Resources/views/app/modification.html.twig&#10;creatio&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/Resources/views/app/creation.html.twig&#10;e&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/Resources/views/app/evenement.html.twig&#10;evenem&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/Resources/views/app/evenement.html.twig&#10;contact.&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/Resources/views/app/contact.html.twig&#10;bas&#9;FILE&#9;file://C:/wamp/www/projetRecup/web/css/Less/base.less&#10;base&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/Resources/views/base.html.twig&#10;acc&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/Resources/views/app/accueil.html.twig&#10;evenement.&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/Resources/views/app/evenement.html.twig&#10;calendar.j&#9;FILE&#9;file://C:/wamp/www/projetRecup/web/js/calendar.js&#10;routi&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/config/routing_dev.yml&#10;routing_dev&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/config/routing_dev.yml&#10;appker&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/AppKernel.php&#10;COMPOSER&#9;FILE&#9;file://C:/wamp/www/projetRecup/composer.json&#10;evene&#9;FILE&#9;file://C:/wamp/www/projetRecup/src/AppBundle/Entity/Evenement.php&#10;fr.xlf&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/Resources/translations/validators.fr.xlf&#10;confi&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/config/config.yml&#10;security.ym&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/config/security.yml&#10;pa&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/config/parameters.yml&#10;appc&#9;FILE&#9;file://C:/wamp/www/projetRecup/src/AppBundle/Controller/AppController.php&#10;modification&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/Resources/views/app/modification.html.twig&#10;eve&#9;FILE&#9;file://C:/wamp/www/projetRecup/src/AppBundle/Entity/Evenement.php&#10;repos&#9;FILE&#9;file://C:/wamp/www/projetRecup/src/AppBundle/Repository/EvenementRepository.php&#10;conf&#9;FILE&#9;file://C:/wamp/www/projetRecup/web/config.php&#10;repo&#9;FILE&#9;file://C:/wamp/www/projetRecup/src/AppBundle/Repository/EvenementRepository.php&#10;ajout&#9;FILE&#9;file://C:/wamp/www/projetRecup/web/js/ajoutePlusEvenements.js&#10;layo&#9;FILE&#9;file://C:/wamp/www/projetRecup/web/css/Less/layout.less&#10;desc&#9;FILE&#9;file://C:/wamp/www/projetRecup/web/css/Less/modules/description.less&#10;dev&#9;FILE&#9;file://C:/wamp/www/projetRecup/web/app_dev.php&#10;para&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/config/parameters.yml&#10;evenementL&#9;FILE&#9;file://C:/wamp/www/projetRecup/web/css/Less/modules/evenement.less&#10;login&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/Resources/views/app/login.html.twig&#10;appcon&#9;FILE&#9;file://C:/wamp/www/projetRecup/src/AppBundle/Controller/AppController.php&#10;evenement&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/Resources/views/app/evenement.html.twig&#10;accue&#9;FILE&#9;file://C:/wamp/www/projetRecup/web/css/Less/modules/accueil.less&#10;accueil&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/Resources/views/app/accueil.html.twig&#10;web/config&#9;FILE&#9;file://C:/wamp/www/projetRecup/web/config.php&#10;crea&#9;FILE&#9;file://C:/wamp/www/projetRecup/web/css/Less/modules/creation.less&#10;c&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/config/config.yml&#10;st&#9;FILE&#9;file://C:/wamp/www/projetRecup/web/css/style.less&#10;sty&#9;FILE&#9;file://C:/wamp/www/projetRecup/web/css/style.min.css&#10;k&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/AppKernel.php&#10;con&#9;FILE&#9;file://C:/wamp/www/projetRecup/app/config/config.yml" />
     <property name="js.buildTools.grunt.node_interpreter" value="C:\Program Files\nodejs\node.exe" />
     <property name="js.buildTools.grunt.grunt-cli.package" value="C:\Users\Jérémie\AppData\Roaming\npm\node_modules\grunt-cli" />
     <property name="full.screen.before.presentation.mode" value="false" />
@@ -529,19 +506,19 @@
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$2/Languages" value="HTML" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\wamp\www\projetRecup\web\js" />
+      <recent name="C:\wamp\www\projetRecup\web\css\Less\modules" />
+      <recent name="C:\wamp\www\projetRecup\web\css" />
+      <recent name="C:\wamp\www\projetRecup\app\Resources\views\element" />
+      <recent name="C:\wamp\www\projetRecup\app\Resources\views\app" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\wamp\www\projetRecup\web\css" />
       <recent name="C:\wamp\www\projetRecup\web\css\images" />
       <recent name="C:\wamp\www\projetRecup\web\css\Less" />
       <recent name="C:\wamp\www\projetRecup\web\css\image" />
       <recent name="C:\wamp\www\projetRecup\app\Resources\views\element" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\wamp\www\projetRecup\web\css" />
-      <recent name="C:\wamp\www\projetRecup\app\Resources\views\element" />
-      <recent name="C:\wamp\www\projetRecup\app\Resources\views\app" />
-      <recent name="C:\wamp\www\projetRecup\web\css\images" />
-      <recent name="C:\wamp\www\projetRecup\web\vendor" />
     </key>
   </component>
   <component name="RunManager">
@@ -671,18 +648,19 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1616" height="867" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20501286" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17866324" sideWeight="0.48698884" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32839838" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Grunt " active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17866324" sideWeight="0.51301116" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29475102" sideWeight="0.5025707" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.0996144" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26110363" sideWeight="0.4974293" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29659864" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" x="15" y="192" width="1552" height="380" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26110363" sideWeight="0.4974293" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26702997" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2734694" sideWeight="0.49614397" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20501286" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18059126" sideWeight="0.47583643" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Grunt " active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18059126" sideWeight="0.52416354" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.0996144" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2745626" sideWeight="0.49614397" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17544988" sideWeight="0.5816135" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20457605" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -690,8 +668,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2974428" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" x="15" y="192" width="1552" height="380" />
-      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30148047" sideWeight="0.49550128" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30148047" sideWeight="0.49550128" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28936744" sideWeight="0.49739584" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -731,27 +708,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/basic.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6429608">
-          <caret line="144" column="9" selection-start-line="144" selection-start-column="9" selection-end-line="144" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/css/Less/modules/description.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="21" column="34" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/test.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -854,20 +810,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/parameters.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33116883">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Evenement.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.630485">
-          <caret line="67" column="53" selection-start-line="67" selection-start-column="53" selection-end-line="67" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/app_dev.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8095238">
@@ -932,13 +874,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.40078586">
-          <caret line="12" column="23" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/AppKernel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.45755693">
@@ -957,15 +892,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-9.153846">
           <caret line="14" column="41" selection-start-line="14" selection-start-column="41" selection-end-line="14" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/app/modification.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.07053942">
-          <caret line="6" column="51" selection-start-line="6" selection-start-column="51" selection-end-line="6" selection-end-column="51" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -993,19 +919,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/app/creation.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21161826">
-          <caret line="6" column="51" selection-start-line="6" selection-start-column="51" selection-end-line="6" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/element/navbar-lien.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.6153846">
           <caret line="4" column="140" selection-start-line="4" selection-start-column="140" selection-end-line="4" selection-end-column="140" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1035,53 +952,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/app/accueil.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.506024">
+        <state vertical-scroll-proportion="0.0">
           <caret line="72" column="15" selection-start-line="54" selection-start-column="8" selection-end-line="72" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/AppController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-22.461538">
-          <caret line="244" column="44" selection-start-line="244" selection-start-column="44" selection-end-line="244" selection-end-column="44" />
-          <folding>
-            <element signature="e#783#804#1#PHP" expanded="true" />
-            <element signature="e#867#888#1#PHP" expanded="true" />
-            <element signature="e#956#977#1#PHP" expanded="true" />
-            <element signature="e#5814#5835#1#PHP" expanded="true" />
-            <element signature="e#5884#5914#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/css/Less/style.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.5384617">
-          <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/css/Less/base.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.153846">
-          <caret line="26" column="16" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/app/contact.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.384615">
-          <caret line="35" column="11" selection-start-line="35" selection-start-column="11" selection-end-line="35" selection-end-column="11" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/app/evenement.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.2692308">
+        <state vertical-scroll-proportion="0.0">
           <caret line="5" column="52" selection-start-line="5" selection-start-column="52" selection-end-line="5" selection-end-column="52" />
           <folding />
         </state>
@@ -1094,8 +973,123 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45661157">
-          <caret line="13" column="70" selection-start-line="13" selection-start-column="70" selection-end-line="13" selection-end-column="70" />
+        <state vertical-scroll-proportion="-5.230769">
+          <caret line="8" column="5" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/Type/EventType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6976242">
+          <caret line="25" column="51" selection-start-line="25" selection-start-column="51" selection-end-line="25" selection-end-column="95" />
+          <folding>
+            <element signature="e#38#78#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/css/Less/style.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.31546393">
+          <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/css/Less/base.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.035051547">
+          <caret line="26" column="16" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/app/modification.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.5289257">
+          <caret line="81" column="8" selection-start-line="81" selection-start-column="8" selection-end-line="81" selection-end-column="149" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/app/creation.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.115385">
+          <caret line="83" column="28" selection-start-line="18" selection-start-column="8" selection-end-line="83" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/AppController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.7349396">
+          <caret line="269" column="44" selection-start-line="269" selection-start-column="44" selection-end-line="269" selection-end-column="44" />
+          <folding>
+            <element signature="e#40#69#0#PHP" expanded="true" />
+            <element signature="e#1043#1064#1#PHP" expanded="true" />
+            <element signature="e#1127#1148#1#PHP" expanded="true" />
+            <element signature="e#1216#1237#1#PHP" expanded="true" />
+            <element signature="e#6074#6095#1#PHP" expanded="true" />
+            <element signature="e#8900#8924#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/css/Less/modules/contact.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.3076923">
+          <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Contact.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.3076923">
+          <caret line="47" column="33" selection-start-line="47" selection-start-column="33" selection-end-line="47" selection-end-column="33" />
+          <folding>
+            <element signature="e#36#68#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/formulaireContact.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="49" column="9" selection-start-line="49" selection-start-column="9" selection-end-line="49" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Evenement.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.3076923">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/app/contact.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.9230769">
+          <caret line="39" column="136" selection-start-line="39" selection-start-column="136" selection-end-line="39" selection-end-column="136" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-23.754387">
+          <caret line="99" column="0" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/parameters.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.26666668">
+          <caret line="8" column="26" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="26" />
           <folding />
         </state>
       </provider>

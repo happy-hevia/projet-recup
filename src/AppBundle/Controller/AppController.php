@@ -2,8 +2,13 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Contact;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 use AppBundle\Entity\Evenement;
 use AppBundle\Form\Type\EventType;
@@ -237,11 +242,39 @@ class AppController extends Controller
 
     /**
      * @route("/contact")
+     * @param Request $request
+     * @return Response
      */
-    public function contactAction()
+    public function contactAction(Request $request)
     {
+        $session = $request->getSession();
 
+        $contact = new Contact();
 
-        return $this->render(':app:contact.html.twig', array());
+        $form = $this->createFormBuilder($contact)
+                        ->add('email', EmailType::class, array('attr' => array('autofocus' => 'autofocus')))
+                        ->add('objet', TextType::class)
+                        ->add('contenu', TextareaType::class)
+                        ->add('submit', SubmitType::class, array('attr' => array('value' => 'valider')))
+                        ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $message = \Swift_Message::newInstance()
+                ->setSubject($contact->getObjet())
+                ->setFrom($contact->getEmail())
+                ->setTo('happyhevia@gmail.com')
+                ->setBody($contact->getContenu());
+
+            $this->get('mailer')->send($message);
+
+            // set flash messages
+            $this->addFlash('ValidationEnvoie', "L'émail a bien été envoyé !");
+
+        }
+        return $this->render(':app:contact.html.twig', array(
+            'form' => $form->createview()
+        ));
     }
 }
