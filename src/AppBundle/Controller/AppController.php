@@ -264,7 +264,7 @@ class AppController extends Controller
             $message = \Swift_Message::newInstance()
                 ->setSubject($contact->getObjet())
                 ->setFrom($contact->getEmail())
-                ->setTo('happyhevia@gmail.com')
+                ->setTo('cyprien.esteves@laposte.net')
                 ->setBody($contact->getContenu());
 
             $this->get('mailer')->send($message);
