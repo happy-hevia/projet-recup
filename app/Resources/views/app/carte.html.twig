@@ -1,0 +1,162 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ parent() }} Carte des poubelles {% endblock %}
+
+{% block styleshetts %}
+    {{ parent() }}
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+{% endblock %}
+
+
+ {% block navbarLien %}
+     {{ include(':element:navbar-lien.html.twig') }}
+ {% endblock %}
+
+{% block carte %}
+<div class="article" >
+    <div class="wrapper-carte" >
+
+        {# Emplacement de la carte avec bouton ajout et popup#}
+
+        <div id="mapid" class="col-xs-12 col-sm-12 col-md-8" >
+            <button class="bouton-ajouter-lieu btn bouton-dore" >
+                Ajouter un lieu <br > de récup'
+            </button >
+            <div class="well popup-ajout" >
+                <span class="glyphicon glyphicon-remove popup-ajout-fermer" ></span >
+                <div class="popup-ajout-emplacement" id="popup-ajout-emplacement" >
+
+                </div >
+
+            </div >
+        </div >
+
+        <div class="clearfix hidden-lg hidden-md" ></div >
+
+
+        {# sidebar pour la recherche personnalisée #}
+
+        <div class="panel panel-default map-sidebar col-md-4" >
+            <div class="panel-heading" >
+                <h2 class="panel-title recherche-titre-partie" >Recherche personnalisée</h2 >
+            </div >
+
+            <div class="panel-body" >
+
+
+                {{ form_start(form, {'attr' : {'class': 'form-horizontal', 'novalidate' : 'novalidate', 'id' : 'formulaire-recherche'}} ) }}
+                {{ form_errors(form) }}
+
+
+                <div class="col-sm-6 col-md-12" >
+                    <div class="form-group" >
+                        {{ form_label(form.note, "Note minimum :", {'label_attr' : {'class': 'label-control recherche-titre'}}) }}
+                        <div class="" >
+                            {{ form_widget(form.note, {'attr' : {'class': 'form-control recherche-note '}} ) }}
+                        </div >
+                    </div >
+                    <div class="form-erreur" >
+                        {{ form_errors(form.note) }}
+                    </div >
+
+                    <div class="form-group" >
+                        <h3 class="recherche-titre" >Accès :</h3 >
+                        <label for="form_facile" class="checkbox-inline col-xs-6" >
+                            {{ form_widget(form.facile, {'attr' : {'class': '', 'checked': 'checked'}} ) }}
+                            Facile
+                        </label >
+                        <div class="form-erreur" >
+                            {{ form_errors(form.facile) }}
+                        </div >
+                        <label for="form_difficile" class="checkbox-inline col-xs-6" >
+                            {{ form_widget(form.difficile, {'attr' : {'class': '', 'checked': 'checked'}} ) }}
+                            Difficile
+                        </label >
+
+                        <div class="form-erreur" >
+                            {{ form_errors(form.difficile) }}
+                        </div >
+                    </div >
+                    <div class="clearfix" ></div >
+
+                    <div class="form-group" >
+                        {{ form_label(form.jour, "jour de la semaine :", {'label_attr' : {'class': 'label-control recherche-titre'}}) }}
+                        <div class="" >
+                            {{ form_widget(form.jour, {'attr' : {'class': 'form-control'}} ) }}
+                        </div >
+                    </div >
+                    <div class="form-erreur" >
+                        {{ form_errors(form.jour) }}
+                    </div >
+                </div >
+
+
+                <div class="col-sm-6 col-md-12" >
+                    <div class="form-group" >
+                        <h3 class="recherche-titre" >Recherche par catégorie :</h3 >
+                        <div class="col-md-6" >
+                            <label for="form_supermarche" class="" >
+                                {{ form_widget(form.supermarche, {'attr' : {'class': '', 'checked': 'checked'}} ) }}
+                                supermarché
+                            </label >
+                            <br />
+                            <label for="form_marche" class="" >
+                                {{ form_widget(form.marche, {'attr' : {'class': '', 'checked': 'checked'}} ) }}
+                                marché
+                            </label >
+                            <br />
+                            <label for="form_boulangerie" class="" >
+                                {{ form_widget(form.boulangerie, {'attr' : {'class': '', 'checked': 'checked'}} ) }}
+                                boulangerie
+                            </label >
+                        </div >
+                        <div class="col-md-6" >
+                            <label for="form_epicerie" class="" >
+                                {{ form_widget(form.epicerie, {'attr' : {'class': '', 'checked': 'checked'}} ) }}
+                                épicerie
+                            </label >
+                            <br />
+                            <label for="form_autre" class="" >
+                                {{ form_widget(form.autre, {'attr' : {'class': '', 'checked': 'checked'}} ) }}
+                                autre
+                            </label >
+                        </div >
+                    </div >
+                </div >
+
+
+                {{ form_end(form) }}
+
+
+            </div >
+
+
+        </div >
+
+    </div >
+
+    <div class="clearfix" ></div >
+
+
+    {% endblock %}
+
+
+
+    {# On affiche rien dans article étant donnée que l'on ne met plus la sidebar #}
+    {% block article %}
+    {% endblock %}
+
+
+    {# on cache la sidebar pour la page carte #}
+    {% block sidebar %}
+    {% endblock %}
+
+    {# Javascript a charger simplement pour cet page#}
+    {% block javascript %}
+        {{ parent() }}
+        <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js" ></script >
+        <script src="{{ asset('js/ftscroller.js') }}"></script >
+        <script src="{{ asset('js/carte.js') }}" ></script >
+        <script src="{{ asset('js/afficheMarker.js') }}" ></script >
+        <script src="{{ asset('js/ajouteLieu.js') }}" ></script >
+    {% endblock %}

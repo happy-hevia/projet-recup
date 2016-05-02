@@ -1,0 +1,59 @@
+
+{# Ceci est le contenu de la popup lors du clic sur un marker #}
+
+{# détermine la note à afficher selon la moyenne #}
+
+
+<div class='well popup-description' >
+    <span class='popup-description-titre' >{{ lieu.nom }}</span >
+    <div class='popup-description-scroll' >
+        <p class='popup-description-noteCategorie' >
+            <span class='col-xs-8 popup-description-note mini-note-{{ moyenne }}' ></span >
+            <span class='col-xs-4 popup-description-categorie' ><span class='evidence' >{{ lieu.type }}</span ></span >
+        </p >
+        <p class='popup-description-image' >
+            {# affiche l'image de présentation selon le type de lieu #}
+                <img class="img-rounded" src='{{ asset('css/images/popup-description-'~lieu.type~'.jpg') }}' alt='image glanage récuperation alimentaire' >
+        </p >
+        <div class='popup-description-jour' >
+            <div class='form-group' >
+                <div class='btn-toolbar center-block jour' role='toolbar' aria-label='...' >
+                    <div class='btn-group' >
+                        <button data-jour="lundi" class='btn btn-jour btn-sm jour-lundi {% for keys in tableauJourMoyenne|keys %} {% if keys == "lundi" %} jour-note-{{ tableauJourMoyenne[keys]|round }}' title='{{ tableauJourMoyenne[keys]|round(1) }} sur 5  {% endif %} {% endfor %}' >L</button >
+                        <button data-jour="mardi" class='btn btn-jour btn-sm jour-mardi {% for keys in tableauJourMoyenne|keys %} {% if keys == "mardi" %} jour-note-{{ tableauJourMoyenne[keys]|round }}' title='{{ tableauJourMoyenne[keys]|round(1) }} sur 5  {% endif %} {% endfor %}' >M</button >
+                        <button data-jour="mercredi" class='btn btn-jour btn-sm jour-mercredi {% for keys in tableauJourMoyenne|keys %} {% if keys == "mercredi" %} jour-note-{{ tableauJourMoyenne[keys]|round }}' title='{{ tableauJourMoyenne[keys]|round(1) }} sur 5 {% endif %} {% endfor %}' >M</button >
+                        <button data-jour="jeudi" class='btn btn-jour btn-sm jour-jeudi {% for keys in tableauJourMoyenne|keys %} {% if keys == "jeudi" %} jour-note-{{ tableauJourMoyenne[keys]|round }}' title='{{ tableauJourMoyenne[keys]|round(1) }} sur 5  {% endif %} {% endfor %}' >J</button >
+                        <button data-jour="vendredi" class='btn btn-jour btn-sm jour-vendredi {% for keys in tableauJourMoyenne|keys %} {% if keys == "vendredi" %} jour-note-{{ tableauJourMoyenne[keys]|round }}' title='{{ tableauJourMoyenne[keys]|round(1) }} sur 5 {% endif %} {% endfor %}' >V</button >
+                        <button data-jour="samedi" class='btn btn-jour btn-sm jour-samedi {% for keys in tableauJourMoyenne|keys %} {% if keys == "samedi" %} jour-note-{{ tableauJourMoyenne[keys]|round }}' title='{{ tableauJourMoyenne[keys]|round(1) }} sur 5  {% endif %} {% endfor %}' >S</button >
+                        <button data-jour="dimanche" class='btn btn-jour btn-sm jour-dimanche {% for keys in tableauJourMoyenne|keys %} {% if keys == "dimanche" %} jour-note-{{ tableauJourMoyenne[keys]|round }}' title='{{ tableauJourMoyenne[keys]|round(1) }} sur 5 {% endif %} {% endfor %}' >D</button >
+                    </div >
+                </div >
+            </div >
+            <p class='row' >
+                <span class='col-xs-6 popup-description-acces' ><span class='evidence' >Acces :</span > {{ lieu.acces }}</span >
+                <span class='col-xs-6 popup-description-date' >Mis le {{ lieu.dateCreation|date("d/m/Y") }}</span >
+            </p >
+            <div class='popup-description-avis' >
+                <p class='popup-description-avis-titrePrincipale' >
+                    Avis sur le lieu de récup'
+                </p >
+                {% for a in avis %}
+                    <div class='popup-description-avis-un' >
+                    <span class='popup-description-avis-un-note mini-note-{{ a.note * 100 }} col-xs-6' >
+                    </span >
+                        <span class='popup-description-avis-un-jour col-xs-5' ><span class='evidence' >{{ a.jourSemaine }}</span ></span >
+                        <span class='popup-description-avis-un-contenu col-xs-12' >{{ a.commentaire }}</span >
+                        <span class='popup-description-avis-un-date pull-right' >Le {{ a.dateAjout|date("d/m/Y") }} {% if a.auteur is not empty %}par {{ a.auteur }}{% endif %}</span >
+
+                    </div >
+                {% endfor %}
+            </div >
+        </div >
+    </div >
+    <div class='zone-modification' >
+        <div class='zone-modification-bouton' >
+            <button class='btn bouton-dore btn-sm' id="popup-ajouter-avis" >Ajouter un avis</button >
+            <button class='btn bouton-dore btn-sm' id="popup-ajouter-description" >modifier la description</button >
+        </div >
+    </div >
+</div >

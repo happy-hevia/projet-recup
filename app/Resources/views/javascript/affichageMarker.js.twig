@@ -1,0 +1,210 @@
+// Création des icones des markers
+
+var supermarche = L.icon({
+    iconUrl: "{{ asset("css/images/marker-vert.png") }}",
+
+    iconSize: [40, 40], // size of the icon
+    iconAnchor: [20, 40], // point of the icon which will correspond to marker's location
+});
+var autre = L.icon({
+    iconUrl: '{{ asset("css/images/marker-violet.png") }}',
+
+    iconSize: [40, 40], // size of the icon
+    iconAnchor: [20, 40], // point of the icon which will correspond to marker's location
+});
+var epicerie = L.icon({
+    iconUrl: '{{ asset("css/images/marker-bleue.png") }}',
+
+    iconSize: [40, 40], // size of the icon
+    iconAnchor: [20, 40], // point of the icon which will correspond to marker's location
+});
+var marche = L.icon({
+    iconUrl: '{{ asset("css/images/marker-rouge.png") }}',
+
+    iconSize: [40, 40], // size of the icon
+    iconAnchor: [20, 40], // point of the icon which will correspond to marker's location
+});
+var boulangerie = L.icon({
+    iconUrl: '{{ asset("css/images/marker-jaune.png") }}',
+
+    iconSize: [40, 40], // size of the icon
+    iconAnchor: [20, 40], // point of the icon which will correspond to marker's location
+});
+
+
+{# Supprime les markers si il existe, nécessaire pour la recherche personnalisé #}
+
+var i;
+for (i = 0; i < tabMarkers.length; i++) {
+    map.removeLayer(tabMarkers[i]);
+
+}
+tabMarkers = [];
+
+
+{# Initialisation du bouton modifier le lieu dans la popup de description #}
+function initBoutonAjouter(id) {
+    $('#ajouter-avis').click(function () {
+
+        $.ajax("avisLieu/" + id, {
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            type: 'POST',
+            data: $('#formulaire-avis').serialize(),
+            beforeSend : function(){
+                var $imageLoading = '<img alt="chargement" src="{{ asset('css/images/loading.gif') }}" style="position:absolute;left:50%;top:50%;"/>'
+                $('.popup-ajout-emplacement').html($imageLoading);
+            },
+
+            success: function (data) {
+                $('.popup-ajout-emplacement').html(data);
+                initBoutonAjouter(id);
+            }
+        })
+    })
+}
+
+{# Initialisation du bouton modifier le lieu dans la popup de description #}
+function initBoutonModifier(id) {
+    $('#modifier-lieu').click(function () {
+
+        $.ajax("descriptionLieu/" + id, {
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            type: 'POST',
+            data: $('#formulaire-modification').serialize(),
+            beforeSend : function(){
+                var $imageLoading = '<img alt="chargement" src="{{ asset('css/images/loading.gif') }}" style="position:absolute;left:50%;top:50%;"/>'
+                $('.popup-ajout-emplacement').html($imageLoading);
+            },
+            success: function (data) {
+                $('.popup-ajout-emplacement').html(data);
+                initBoutonModifier(id);
+            }
+        })
+    })
+}
+
+{# Tableau qui va contenir toute les positions des marker : Permet de savoir si le marker a déjà était positionné #}
+var tabLocalisation = [];
+
+
+{# Le clic sur un bouton jour permet de n'afficher que les commentaires de ce jour#}
+function triCommentaireParDate(){
+
+    $('.btn-jour').click(function(){
+        var $jour = $(this).data('jour');
+
+        if ($(this).hasClass('actif')){
+            $(this).toggleClass('actif');
+        } else{
+            $('.btn-jour').removeClass('actif');
+            $(this).toggleClass('actif');
+        }
+
+        if ($(this).hasClass('actif')){
+            $('.popup-description-avis-un').hide();
+            $('.popup-description-avis-un').has( ".popup-description-avis-un-jour:contains('" + $jour + "')").show();
+        }else{
+            $('.popup-description-avis-un').show();
+        }
+    })
+}
+
+
+
+{% for m in marker %}
+
+
+{# Je n'affiche que les markers qui n'existe pas déjà #}
+
+if (tabLocalisation.indexOf("{{ m.lieu.localisation }}") === -1) {
+
+    {# n'affiche que les lieux qui ont une moyenne supérieur à celle demandé #}
+
+    {% if m.lieu.id in tableauMoyenne|keys %}
+
+    {# Permet de connaitre l'image à afficher selon la note' #}
+
+    {% set moyenne = 0 %}
+    {% for i in range(0, 5, 0.5) %}
+        {% if  tableauMoyenne[m.lieu.id] >= i and tableauMoyenne[m.lieu.id] < ( i + 0.5 ) %}
+            {% set moyenne = i*100 %}
+        {% endif %}
+    {% endfor %}
+
+
+
+    {# Positionnement du marker et définition de la catégorie pour le marker #}
+    var marker{{ m.lieu.id }} = L.marker( {{ m.lieu.localisation|raw }}, {icon: {{ m.lieu.type }} }).addTo(map);
+
+    {# Rempli la popup avec le template lorsque que l'on demande l'ouverture #}
+    marker{{ m.lieu.id }}.on('popupopen', function () {
+        $.ajax('descriptionPopup/{{ m.lieu.id }}/{{ moyenne }}', {
+            type: 'GET',
+            dataType: "html",
+            data: {
+        {% for el in tableauJourMoyenne[m.Lieu.id]|keys %}
+                {{ el }} : {{ tableauJourMoyenne[m.Lieu.id][el] }} ,
+        {% endfor %}
+            },
+            beforeSend : function(){
+                var $imageLoading = '<img alt="chargement" src="{{ asset("css/images/loading.gif") }}" style="display:inline-block"/>';
+                marker{{ m.lieu.id }}.setPopupContent($imageLoading);
+            },
+            success: function (data) {
+
+                {# Ajout le bon contenu dans la popup #}
+
+                marker{{ m.lieu.id }}.setPopupContent(data);
+
+                triCommentaireParDate()
+
+                {# Initialise le bouton "ajouter un avis" et la popup qui va avec #}
+
+                $('#popup-ajouter-avis').click(function () {
+                    var id = {{ m.lieu.id }}
+                            $('.popup-ajout').show();
+                    $.ajax("avisLieu/" + id, {
+                        beforeSend : function(){
+                            var $imageLoading = '<img alt="chargement" src="{{ asset('css/images/loading.gif') }}" style="position:absolute;left:50%;top:50%;"/>'
+                            $('.popup-ajout-emplacement').html($imageLoading);
+                        },
+                        success: function (data) {
+                            $('.popup-ajout-emplacement').html(data);
+                            initBoutonAjouter(id);
+
+                        }
+                    })
+                })
+
+                {# Initialise le bouton "modifier la description et la popup qui va avec #}
+
+                $('#popup-ajouter-description').click(function () {
+                    $('.popup-ajout').show();
+                    var id = {{ m.lieu.id }}
+                            $.ajax("descriptionLieu/" + id, {
+                                beforeSend : function(){
+                                    var $imageLoading = '<img alt="chargement" src="{{ asset('css/images/loading.gif') }}" style="position:absolute;left:50%;top:50%;"/>'
+                                    $('.popup-ajout-emplacement').html($imageLoading);
+                                },
+                                success: function (data) {
+                                    $('.popup-ajout-emplacement').html(data);
+                                    initBoutonModifier(id);
+
+                                }
+                            })
+                })
+
+            }
+        })
+
+
+    });
+    // permet d'afficher la popup lors du click
+    marker{{ m.lieu.id }}.bindPopup();
+    tabMarkers.push(marker{{ m.lieu.id }});
+    tabLocalisation.push("{{ m.lieu.localisation }}");
+
+
+    {% endif %}
+}
+{% endfor %}

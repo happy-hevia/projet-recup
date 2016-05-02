@@ -1,0 +1,99 @@
+<div class="well" >
+
+
+    {# Description du Lieu #}
+
+    <div class="sous-titre sous-titre-principale" >Description du lieu</div >
+
+    {# vérifie si le formulaire est valide si oui affiche le message de success sinon le formulaire avec les erreurs ou non #}
+    {% if valide == false %}
+
+
+
+        {{ form_start(form, {'attr' : {'class': 'form-horizontal', 'novalidate' : 'novalidate', 'id' : 'formulaire-modification'}} ) }}
+        {{ form_errors(form) }}
+
+        <div class="form-group" >
+            {{ form_label(form.localisation, "Position du lieu de récup' :", {'label_attr' : {'class': 'label-control '}}) }}
+
+            <div class="" >
+                {{ form_widget(form.localisation, {'attr' : {'class': 'form-control', 'readonly': 'readonly'}} ) }}
+            </div >
+        </div >
+        <div class="form-erreur" >
+            {{ form_errors(form.localisation) }}
+        </div >
+
+        <div class="form-group" >
+            {{ form_label(form.nom, "Nom de l'enseigne :", {'label_attr' : {'class': 'label-control '}}) }}
+            <div class="" >
+                {{ form_widget(form.nom, {'attr' : {'class': 'form-control'}} ) }}
+            </div >
+        </div >
+        <div class="form-erreur" >
+            {{ form_errors(form.nom) }}
+        </div >
+        <div class="form-info" >
+            <p >* exemple : "poubelles match Lambersart"</p >
+        </div >
+
+        <div class="form-group" >
+            {{ form_label(form.type, "Catégorie :", {'label_attr' : {'class': 'label-control '}}) }}
+            <div class="" >
+                {{ form_widget(form.type, {'attr' : {'class': 'form-control'}} ) }}
+            </div >
+        </div >
+        <div class="form-erreur" >
+            {{ form_errors(form.type) }}
+        </div >
+
+        <div class="form-group" >
+            {{ form_label(form.acces, "Accès :", {'label_attr' : {'class': 'label-control '}}) }}
+            <div class="" >
+                {{ form_widget(form.acces, {'attr' : {'class': 'form-control'}} ) }}
+            </div >
+        </div >
+        <div class="form-erreur" >
+            {{ form_errors(form.acces) }}
+        </div >
+        <div class="form-info" >
+            <p >* La facilité d'accès au lieu de récup'.</p >
+        </div >
+
+
+        {# le formulaire va être soumis par ajax donc je cache le bouton de soumission de base et j'en crée un autre#}
+
+        <div class="btn bouton-dore" id="modifier-lieu" >Modifier</div >
+        {{ form_widget(form.submit, {'attr' : {'class' : 'btn btn-success hidden'}, 'label' : 'Ajouter'}) }}
+        {{ form_rest(form) }}
+        {{ form_end(form) }}
+
+    {% endif %}
+    {% if valide == true %}
+        <div class="alert alert-success" >
+            <span class="glyphicon glyphicon-info-sign" ></span > Les modifications ont bien été enregistrées
+        </div >
+    {% endif %}
+
+</div >
+
+<script >
+    activeScroll();
+
+    desactiveLeafletEvents();
+
+    // ferme la popup d'ajout lors du clic sur la croix
+    $('.popup-ajout-fermer').click(function () {
+        $('.popup-ajout').hide();
+        activeLeafletEvents()
+    })
+
+
+
+    function activeScroll(){
+        new FTScroller(document.getElementById('popup-ajout-emplacement'), {
+            scrollingX: false,
+            bouncing: false
+        });
+    }
+</script >

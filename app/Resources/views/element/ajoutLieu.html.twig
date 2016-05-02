@@ -1,0 +1,163 @@
+<div class="well" >
+    <h2 >Ajout d'un nouveau lieu de récup'</h2 >
+
+
+    {# vérifie si le formulaire est valide si oui affiche le message de success sinon le formulaire avec les erreurs ou non #}
+    {% if valide == false %}
+
+
+
+        {{ form_start(form, {'attr' : {'class': 'form-horizontal', 'novalidate' : 'novalidate', 'id' : 'formulaire-ajout'}} ) }}
+        {{ form_errors(form) }}
+
+
+
+        {# Description du Lieu #}
+
+        <div class="sous-titre" >Description du lieu</div >
+
+        <div class="form-group" >
+            {{ form_label(form.lieu.localisation, "Position du lieu de récup' :", {'label_attr' : {'class': 'label-control '}}) }}
+
+
+            <div class="" >
+                {{ form_widget(form.lieu.localisation, {'attr' : {'class': 'form-control', 'readonly': 'readonly'}} ) }}
+            </div >
+        </div >
+        <div class="form-erreur" >
+            {{ form_errors(form.lieu.localisation) }}
+        </div >
+
+        <div class="form-group" >
+            {{ form_label(form.lieu.nom, "Nom de l'enseigne* :", {'label_attr' : {'class': 'label-control '}}) }}
+            <div class="" >
+                {{ form_widget(form.lieu.nom, {'attr' : {'class': 'form-control'}} ) }}
+            </div >
+        </div >
+        <div class="form-erreur" >
+            {{ form_errors(form.lieu.nom) }}
+        </div >
+        <div class="form-info" >
+            <p >* exemple : "poubelles match Lambersart"</p >
+        </div >
+
+        <div class="form-group" >
+            {{ form_label(form.lieu.type, "Catégorie :", {'label_attr' : {'class': 'label-control '}}) }}
+            <div class="" >
+                {{ form_widget(form.lieu.type, {'attr' : {'class': 'form-control'}} ) }}
+            </div >
+        </div >
+        <div class="form-erreur" >
+            {{ form_errors(form.lieu.type) }}
+        </div >
+
+        <div class="form-group" >
+            {{ form_label(form.lieu.acces, "Accès* :", {'label_attr' : {'class': 'label-control '}}) }}
+            <div class="" >
+                {{ form_widget(form.lieu.acces, {'attr' : {'class': 'form-control'}} ) }}
+            </div >
+        </div >
+        <div class="form-erreur" >
+            {{ form_errors(form.lieu.acces) }}
+        </div >
+        <div class="form-info" >
+            <p >* La facilité d'accès au lieu de récup'.</p >
+        </div >
+
+
+        {# Avis sur le lieu #}
+
+        <div class="sous-titre" >Avis sur le lieu</div >
+
+        <div class="form-group" >
+            {{ form_label(form.jourSemaine, "Jour de la semaine* :", {'label_attr' : {'class': 'label-control '}}) }}
+            <div class="" >
+                {{ form_widget(form.jourSemaine, {'attr' : {'class': 'form-control'}} ) }}
+            </div >
+        </div >
+        <div class="form-erreur" >
+            {{ form_errors(form.jourSemaine) }}
+        </div >
+        <div class="form-info" >
+            <p >* jour de la semaine où vous avez fait la récup'. Si vous souhaitez ajouter pour plusieurs jours, vous devez "ajouter un avis" pour chacun des jours.</p >
+        </div >
+
+        <div class="form-group" >
+            {{ form_label(form.auteur, "Auteur de l'avis (facultatif) :", {'label_attr' : {'class': 'label-control '}}) }}
+            <div class="" >
+                {{ form_widget(form.auteur, {'attr' : {'class': 'form-control'}} ) }}
+            </div >
+        </div >
+        <div class="form-erreur" >
+            {{ form_errors(form.auteur) }}
+        </div >
+
+        <div class="form-group" >
+            {{ form_label(form.note, "Note du lieu de récup'* :", {'label_attr' : {'class': 'label-control '}}) }}
+            <div class="" >
+                {{ form_widget(form.note, {'attr' : {'class': 'form-control'}} ) }}
+            </div >
+        </div >
+        <div class="form-erreur" >
+            {{ form_errors(form.note) }}
+        </div >
+        <div class="form-info" >
+            <p >* 0 pour les poubelles vides</p >
+        </div >
+
+        <div class="form-group" >
+            {{ form_label(form.commentaire, "Contenu du commentaire (facultatif)* :", {'label_attr' : {'class': 'label-control '}}) }}
+            <div class="" >
+                {{ form_widget(form.commentaire, {'attr' : {'class': 'form-control'}} ) }}
+            </div >
+        </div >
+        <div class="form-erreur" >
+            {{ form_errors(form.commentaire) }}
+        </div >
+        <div class="form-info" >
+            <p >* Vous pouvez mettre la quantitée / qualitée de nourriture, le type de nourriture, le moyen d'accès aux poubelles ou tout autre informations qui vous semble importantes.</p >
+        </div >
+
+
+        {# le formulaire va être soumis par ajax donc je cache le bouton de soumission de base et j'en crée un autre#}
+
+        <div class="btn bouton-dore" id="ajouter-lieu" >Ajouter</div >
+
+        {# le bouton est caché pour éviter les actions automatiques #}
+
+        {{ form_widget(form.submit, {'attr' : {'class' : 'btn btn-success hidden'}, 'label' : 'Ajouter'}) }}
+        {{ form_rest(form) }}
+        {{ form_end(form) }}
+
+    {% endif %}
+    {% if valide == true %}
+        <div class="alert alert-success" >
+            <span class="glyphicon glyphicon-info-sign" ></span > Les modifications ont bien été enregistrées
+        </div >
+    {% endif %}
+
+</div >
+
+
+<script >
+    activeScroll();
+
+    desactiveLeafletEvents();
+
+
+
+    // ferme la popup d'ajout lors du clic sur la croix
+    $('.popup-ajout-fermer').click(function () {
+        $('.popup-ajout').hide();
+        activeLeafletEvents()
+    })
+
+
+    function activeScroll(){
+        new FTScroller(document.getElementById('popup-ajout-emplacement'), {
+            scrollingX: false,
+            bouncing: false
+        });
+    }
+
+</script >
