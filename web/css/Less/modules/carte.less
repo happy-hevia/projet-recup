@@ -1,7 +1,13 @@
-#mapid {
-    height: 70vh;
+.popup-ajout {
+    display: none;
     position: relative;
-    padding: 0;
+    margin-bottom: -70vh;
+    height: 70vh;
+    padding: 5px 0 5px 5px;
+    width: 300px;
+    z-index: 1025;
+    cursor: default;
+
 
     .form-erreur{
         color: #DC4444;
@@ -11,55 +17,52 @@
         color: grey;
     }
 
+    h2{
+        margin-top: -8px;
+        color: #ADA71C;
+        font-weight: bold;
+        font-size: 2.2em;
+    }
+
+    &-emplacement {
+        margin-top: 22px;
+        height: 95%;
+
+        .btn{
+            width: 100%;
+            font-weight: bold;
+        }
+    }
+
+    &-fermer{
+        display: inline-block;
+        position: absolute;
+        top: 5px;
+        right: 5px;
+    }
+    &-titre {
+        margin-top: 5px;
+        font-size: 1.4em;
+        color: #8ea06e;
+    }
+    &-ajouterCarte {
+        margin: 15px auto;
+    }
+}
+
+
+#mapid {
+    height: 70vh;
+    position: relative;
+    padding: 0;
+
     .bouton-ajouter-lieu {
         position: absolute;
         top: 5px;
         left: 45px;
         z-index: 10;
     }
-    .popup-ajout {
-        display: none;
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        padding: 5px 0 5px 5px;
-        width: 300px;
-        z-index: 1025;
-        cursor: default;
 
-        h2{
-            margin-top: -8px;
-            color: #ADA71C;
-            font-weight: bold;
-            font-size: 2.2em;
-        }
-
-        &-emplacement {
-            margin-top: 22px;
-            height: 95%;
-
-            .btn{
-                width: 100%;
-                font-weight: bold;
-            }
-        }
-
-        &-fermer{
-            display: inline-block;
-            position: absolute;
-            top: 5px;
-            right: 5px;
-        }
-        &-titre {
-            margin-top: 5px;
-            font-size: 1.4em;
-            color: #8ea06e;
-        }
-        &-ajouterCarte {
-            margin: 15px auto;
-        }
-    }
 }
 
 .map-sidebar {

@@ -32,7 +32,7 @@ var aerien = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Wo
 });
 
 var map = L.map('mapid', {
-    center: [50.636, 3.048],
+    center: [50.629, 3.065],
     zoom: 13,
     layers: normal
 });

@@ -7,6 +7,7 @@
 var alertAjout = '<div class="alert alert-info alert-dismissible fade in text-center" id="position-alert" role="alert" style="z-index: 10022;position: relative;top: 0;left: 0; padding: 26px 10px;""> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> <strong>Double clic</strong> sur la carte pour positionner le lieu de récup\' !</div>';
 
 
+
 function desactiveLeafletEvents() {
     map.dragging.disable();
     map.touchZoom.disable();
