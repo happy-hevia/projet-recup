@@ -154,7 +154,7 @@
             <hr >
 
             <div class="amis" >
-                <p class="aside-title" >Associations amis</p >
+                <p class="aside-title" >Associations amies</p >
                 <ul >
                     <li ><strong ><a href="http://liledesolidarite.overblog.com/" > L'île de solidarité</a ></strong >​</li >
                     <li ><strong ><a href="http://lesgarspilleurs.org" >Les Gars'pilleurs</a ></strong ></li >
@@ -167,8 +167,10 @@
             <div class="utile" >
                 <p class="aside-title" >Liens utiles</p >
                     <ul >
-                        <li ><strong ><a href="https://framacalc.org/LillePoubelles" >Framacalc des lieux de récup' : </a >​</strong >Tableur des lieux de récup' sur Lille et ses environs.</li >
-                        <li ><strong ><a href="http://freegan.fr/" >Freegan : </a ></strong>Un bon site pour apprendre les bases du <i >Freeganisme</i > et de la récup' alimentaire</li >
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li ><strong ><a href="https://framacalc.org/LillePoubelles" >Framacalc des lieux de récup' : </a >​</strong >Tableur des lieux de récup' sur Lille et ses environs.</li >
+                        {% endif %}
+                                                <li ><strong ><a href="http://freegan.fr/" >Freegan : </a ></strong>Un bon site pour apprendre les bases du <i >Freeganisme</i > et de la récup' alimentaire</li >
                         <li ><strong ><a href="http://trashwiki.org/en/Main_Page" >Trash wiki : </a >​</strong >Site collaboratif anglophone sur le freeganisme et le glanage.</li >
                     </ul >
             </div >

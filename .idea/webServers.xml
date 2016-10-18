@@ -5,7 +5,7 @@
       <webServer id="3ee85046-6fb1-4c1d-ae08-706378557356" name="ProjetRecup" url="http://ftp.cluster003.ovh.net">
         <fileTransfer host="ftp.cluster003.ovh.net" port="21" password="dfc2dff9dfeddfffdfe8dfeedf9cdfe1dfc8dfcddf9cdffc" username="lilesophsd">
           <advancedOptions>
-            <advancedOptions dataProtectionLevel="Private" />
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" />
           </advancedOptions>
         </fileTransfer>
       </webServer>

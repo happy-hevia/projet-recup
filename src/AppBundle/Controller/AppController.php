@@ -266,7 +266,8 @@ class AppController extends Controller
                 ->setSubject($contact->getObjet() . $contenuEnPlus)
                 ->setFrom($contact->getEmail())
                 ->setTo('compost_club@riseup.net')
-                ->setBody("Envoyé par : ".$contact->getEmail()."\n\n".$contact->getContenu());
+                ->setReplyTo(array($contact->getEmail()))
+                ->setBody($contact->getContenu());
 
             $this->get('mailer')->send($message);
 
