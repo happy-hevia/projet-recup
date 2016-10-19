@@ -44,9 +44,9 @@ class GestionFormulaire
     /**
      * @param $request
      * @return bool
-     * Créer le formulaire, récupère la requête, traite de le formulaire si il est envoyé
+     * Créer le formulaire,  traite de le formulaire si celui ci est envoyé par l'internaute
      * retourne true si le formuaire est envoyé
-     *          le formulaire si il ne l'est pas
+     * retourne le formulaire si le formulaire n'est pas envoyé
      */
     public function gereFormulaireCreation($request)
     {
@@ -66,15 +66,13 @@ class GestionFormulaire
     /**
      * @param $request
      * @param $evenement
-     * @return bool Créer le formulaire, récupère la requête, traite de le formulaire si il est envoyé
-     * Créer le formulaire, récupère la requête, traite de le formulaire si il est envoyé
+     * @return bool
+     * Créer le formulaire,  traite de le formulaire si celui ci est envoyé par l'internaute
      * retourne true si le formuaire est envoyé
-     * le formulaire si il ne l'est pas
+     * retourne le formulaire si le formulaire n'est pas envoyé
      */
     public function gereFormulaireModification($request, $evenement)
     {
-
-
         //récupère les anciennes images pour pouvoir les supprimer
         $fichierPicture = $evenement->getPicture();
         $fichierPictureMiniature = $evenement->getPictureMin();
@@ -111,6 +109,8 @@ class GestionFormulaire
 
     /**
      * @return array
+     * gestion du formulaire de contact
+     * retourne le tableau des éléments à passer à la vue
      */
     public function gereFormulaireConnexion(){
 
@@ -125,6 +125,12 @@ class GestionFormulaire
             'error' => $error);
     }
 
+    /**
+     * @param $request
+     * @return array
+     * Créer le formulaire,  traite le formulaire si celui-ci est envoyé par l'internaute
+     * retourne le tableau des éléments à passer à la vue
+     */
     public function gereFormulaireContact($request){
         $contact = new Contact();
 
