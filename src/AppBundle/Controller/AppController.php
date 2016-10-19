@@ -15,6 +15,7 @@ use AppBundle\Form\Type\EventType;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class AppController extends Controller
 {
@@ -68,28 +69,19 @@ class AppController extends Controller
     /**
      * @route("/creation")
      * @param Request $request
+     * @Template(":app:creation.html.twig")
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
     public function creationAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
+        $gestionFormulaire = $this->get('app_bundle.app.gestion_formulaire');
 
-        $evenement = new Evenement ();
-        $form = $this->createForm(EventType::class, $evenement);
+       if($gestionFormulaire->gereFormulaireCreation($request) === true){
+           $evenement = $gestionFormulaire->getEvenement();
+           return $this->redirectToRoute('app_app_description', array('id' => $evenement->getId()));
+       };
 
-
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $evenement->upload();
-            $em->persist($evenement);
-            $em->flush();
-
-            return $this->redirectToRoute('app_app_description', array('id' => $evenement->getId()));
-        }
-        return $this->render(':app:creation.html.twig', array(
-            'form' => $form->createView(),
-
-        ));
+        return array('form' => $gestionFormulaire->gereFormulaireCreation($request)->createView());
     }
 
     /**
@@ -101,43 +93,17 @@ class AppController extends Controller
      */
     public function modificationAction(Evenement $evenement, Request $request, $id)
     {
-        $em = $this->getDoctrine()->getManager();
+        $gestionFormulaire = $this->get('app_bundle.app.gestion_formulaire');
+        $gereFormulaireModification = $gestionFormulaire->gereFormulaireModification($request, $evenement);
 
-        //récupère les anciennes images pour pouvoir les supprimer
-        $fichierPicture = $evenement->getPicture();
-        $fichierPictureMiniature = $evenement->getPictureMin();
-
-        $form = $this->createForm(EventType::class, $evenement);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-
-//            permet de réinitialiser url de l'image miniature dans le cas où la miniature n'est pas créé comme dans
-//            le cas de bug ou pour les gifs
-            $evenement->setPictureMin(null);
-
-            //modification
-            $evenement->upload();
-            $em->persist($evenement);
-
-//            si l'internaute change d'image pour l'événement alors on supprime les anciennes
-            if ($fichierPicture != $evenement->getPicture()) {
-                if (file_exists(__DIR__ . '/../../../../www/poubellesenor/upload/' . $fichierPicture) && $fichierPicture != null) {
-                    unlink(__DIR__ . '/../../../../www/poubellesenor/upload/' . $fichierPicture);
-                }
-                if (file_exists(__DIR__ . '/../../../../www/poubellesenor/upload/' . $fichierPictureMiniature) && $fichierPictureMiniature != null) {
-                    unlink(__DIR__ . '/../../../../www/poubellesenor/upload/' . $fichierPictureMiniature);
-                }
-            }
-
-            $em->flush();
-
+        if($gereFormulaireModification === true){
             return $this->redirectToRoute('app_app_description', array('id' => $id));
-        }
+        };
+
 
         return $this->render(':app:modification.html.twig', array(
             'evenement' => $evenement,
-            'form' => $form->createView(),
+            'form' => $gereFormulaireModification->createView(),
         ));
     }
 
@@ -146,23 +112,9 @@ class AppController extends Controller
      */
     public function loginAction()
     {
-        $reponse = new Response();
-        $reponse->setStatusCode(Response::HTTP_OK);
-        $authenticationUtils = $this->get('security.authentication_utils');
-
-        // get the login error if there is one
-        $error = $authenticationUtils->getLastAuthenticationError();
-
-        // last username entered by the user
-        $lastUsername = $authenticationUtils->getLastUsername();
-
         return $this->render(
             ':app:login.html.twig',
-            array(
-                // last username entered by the user
-                'last_username' => $lastUsername,
-                'error' => $error,
-            )
+            $this->get('app_bundle.app.gestion_formulaire')->gereFormulaireConnexion()
         );
     }
 
@@ -247,36 +199,8 @@ class AppController extends Controller
      */
     public function contactAction(Request $request)
     {
-        $session = $request->getSession();
-
-        $contact = new Contact();
-
-        $form = $this->createFormBuilder($contact)
-                        ->add('email', EmailType::class, array('attr' => array('autofocus' => 'autofocus')))
-                        ->add('objet', TextType::class)
-                        ->add('contenu', TextareaType::class)
-                        ->add('submit', SubmitType::class, array('attr' => array('value' => 'valider')))
-                        ->getForm();
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $contenuEnPlus = " (Envoyé depuis le site poubelles-en-or.fr)";
-            $message = \Swift_Message::newInstance()
-                ->setSubject($contact->getObjet() . $contenuEnPlus)
-                ->setFrom($contact->getEmail())
-                ->setTo('compost_club@riseup.net')
-                ->setReplyTo(array($contact->getEmail()))
-                ->setBody($contact->getContenu());
-
-            $this->get('mailer')->send($message);
-
-            // set flash messages
-            $this->addFlash('ValidationEnvoie', "L'émail a bien été envoyé !");
-
-        }
-        return $this->render(':app:contact.html.twig', array(
-            'form' => $form->createview()
-        ));
+        $form = $this->get('app_bundle.app.gestion_formulaire')->gereFormulaireContact($request);
+        return $this->render(':app:contact.html.twig', $form
+            );
     }
 }
